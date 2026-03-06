@@ -90,7 +90,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "tsc --noEmit",
-    "prepublishOnly": "npm run lint && npm run test && npm run build"
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "postversion": "git push origin main --follow-tags"
   },
   "devDependencies": {
     "tsup": "^8.0.0",
