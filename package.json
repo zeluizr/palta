@@ -1,6 +1,6 @@
 {
   "name": "@zeluizr/palta",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Formatação e validação de dados da América Latina — CPF, RUT, CUIT, moedas, telefones, CEPs e mais. Zero dependencies.",
   "keywords": [
     "brasil",
