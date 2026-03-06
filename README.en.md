@@ -1,4 +1,4 @@
-# palta
+# 🥑 palta
 
 [![npm](https://img.shields.io/npm/v/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
 [![license](https://img.shields.io/npm/l/@zeluizr/palta)](./LICENSE)
