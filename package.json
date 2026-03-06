@@ -1,6 +1,6 @@
 {
   "name": "@zeluizr/palta",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Formateo y validación de datos de América Latina — CPF, RUT, CUIT, monedas, teléfonos, códigos postales y más. Zero dependencies.",
   "keywords": [
     "brasil",
@@ -23,11 +23,19 @@
   ],
   "author": "zeluizr",
   "contributors": [
-    { "name": "zeluizr", "url": "https://github.com/zeluizr" },
-    { "name": "commente.me", "url": "https://commente.me" }
+    {
+      "name": "zeluizr",
+      "url": "https://github.com/zeluizr"
+    },
+    {
+      "name": "commente.me",
+      "url": "https://commente.me"
+    }
   ],
   "license": "MIT",
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zeluizr/palta.git"
