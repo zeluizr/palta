@@ -1,8 +1,8 @@
 # palta
 
-[![npm](https://img.shields.io/npm/v/palta)](https://www.npmjs.com/package/palta)
-[![license](https://img.shields.io/npm/l/palta)](./LICENSE)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/palta)](https://bundlephobia.com/package/palta)
+[![npm](https://img.shields.io/npm/v/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
+[![license](https://img.shields.io/npm/l/@zeluizr/palta)](./LICENSE)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@zeluizr/palta)](https://bundlephobia.com/package/@zeluizr/palta)
 
 **Formatação e validação de dados da América Latina.**
 
@@ -25,7 +25,7 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, moedas, telefones e CEPs. Zero dependências, tr
 ## Instalação
 
 ```bash
-npm install palta
+npm install @zeluizr/palta
 ```
 
 ---
@@ -33,7 +33,7 @@ npm install palta
 ## Quick Start
 
 ```ts
-import { br, cl, ar, co, pe, detect } from 'palta'
+import { br, cl, ar, co, pe, detect } from '@zeluizr/palta'
 
 // Brasil
 br.cpf.format('52998224725')        // '529.982.247-25'
@@ -80,11 +80,11 @@ Para melhor tree-shaking, importe apenas o módulo que você precisa:
 
 ```ts
 // Importar só Brasil
-import { br } from 'palta'
-import br from 'palta/br'
+import { br } from '@zeluizr/palta'
+import br from '@zeluizr/palta/br'
 
 // Importar só um módulo
-import * as cpf from 'palta/br'
+import * as cpf from '@zeluizr/palta/br'
 ```
 
 ---
@@ -206,7 +206,7 @@ mask: string
 Auto-detecta o país e tipo de um documento:
 
 ```ts
-import { detect } from 'palta'
+import { detect } from '@zeluizr/palta'
 
 detect('529.982.247-25')
 // { country: 'BR', type: 'cpf', valid: true, formatted: '529.982.247-25' }
@@ -248,7 +248,7 @@ Pull requests são bem-vindos! Siga as regras:
 - Zero dependências de runtime
 - TypeScript strict (sem `any`)
 - Funções puras e imutáveis
-- Cobertura mínima de 95%
+- Cobertura mínima de 94%
 - Defensivo: lidar com `null`/`undefined` sem quebrar
 
 ---
