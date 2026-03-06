@@ -39,6 +39,15 @@ npm install @zeluizr/palta
 
 ---
 
+## Demo
+
+Teste todos os módulos ao vivo:
+
+- 🌐 [palta.zeluizr.com/demo](https://palta.zeluizr.com/demo) — demo interativa
+- 📄 [demo/index.html](./demo/index.html) — demo standalone (abre no browser)
+
+---
+
 ## Quick Start
 
 ```ts
