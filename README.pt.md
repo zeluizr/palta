@@ -4,25 +4,25 @@
 [![license](https://img.shields.io/npm/l/@zeluizr/palta)](./LICENSE)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@zeluizr/palta)](https://bundlephobia.com/package/@zeluizr/palta)
 
-**Formateo y validación de datos de América Latina.**
+**Formatação e validação de dados da América Latina.**
 
-CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. Cero dependencias, tree-shakeable, funciona en el browser y en Node.js.
+CPF, CNPJ, RUT, CUIT, NIT, RUC, moedas, telefones e CEPs. Zero dependências, tree-shakeable, funciona no browser e no Node.js.
 
 ---
 
-## Países soportados
+## Países suportados
 
-| País | Documentos | Moneda | Teléfono | Código postal |
-|------|-----------|--------|----------|---------------|
+| País | Documentos | Moeda | Telefone | CEP |
+|------|-----------|-------|----------|-----|
 | 🇧🇷 Brasil | CPF, CNPJ | BRL (R$) | +55 | 8 dígitos |
 | 🇨🇱 Chile | RUT | CLP ($) | +56 | 7 dígitos |
-| 🇦🇷 Argentina | CUIT/CUIL, DNI | ARS ($) | +54 | CPA o 4 dígitos |
-| 🇨🇴 Colombia | NIT, CC | COP ($) | +57 | 6 dígitos |
-| 🇵🇪 Perú | RUC, DNI | PEN (S/) | +51 | 5 dígitos |
+| 🇦🇷 Argentina | CUIT/CUIL, DNI | ARS ($) | +54 | CPA ou 4 dígitos |
+| 🇨🇴 Colômbia | NIT, CC | COP ($) | +57 | 6 dígitos |
+| 🇵🇪 Peru | RUC, DNI | PEN (S/) | +51 | 5 dígitos |
 
 ---
 
-## Instalación
+## Instalação
 
 ```bash
 npm install @zeluizr/palta
@@ -57,33 +57,33 @@ ar.cuit.validate('20-12345678-6')   // true
 ar.dni.format('12345678')           // '12.345.678'
 ar.currency.format(1234.56)         // '$ 1.234,56'
 
-// Colombia
+// Colômbia
 co.nit.format('8000000001')         // '800.000.000-1'
 co.cc.format('1234567890')          // '1.234.567.890'
 co.currency.format(89900)           // '$ 89.900'
 
-// Perú
+// Peru
 pe.ruc.validate('20100070970')      // true
 pe.dni.validate('12345678')         // true
 pe.currency.format(1234.56)         // 'S/ 1,234.56'
 
-// Auto-detección
+// Auto-detecção
 detect('529.982.247-25')
 // { country: 'BR', type: 'cpf', valid: true, formatted: '529.982.247-25' }
 ```
 
 ---
 
-## Imports selectivos
+## Imports seletivos
 
-Para mejor tree-shaking, importa solo el módulo que necesitas:
+Para melhor tree-shaking, importe apenas o módulo que você precisa:
 
 ```ts
-// Solo Brasil
+// Importar só Brasil
 import { br } from '@zeluizr/palta'
 import br from '@zeluizr/palta/br'
 
-// Solo un módulo
+// Importar só um módulo
 import * as cpf from '@zeluizr/palta/br'
 ```
 
@@ -91,54 +91,54 @@ import * as cpf from '@zeluizr/palta/br'
 
 ## API Reference
 
-### Documentos fiscales
+### Documentos fiscais
 
-Todos los módulos de documento exponen:
+Todos os módulos de documento expõem:
 
 ```ts
-format(value: string): string    // Formatea con puntuación
-strip(value: string): string     // Elimina formato
+format(value: string): string    // Formata com pontuação
+strip(value: string): string     // Remove formatação
 validate(value: string): boolean // Valida dígito verificador
 mask: string                     // Máscara para inputs
 ```
 
 #### Brasil
 
-| Módulo | Formato | Ejemplo |
+| Módulo | Formato | Exemplo |
 |--------|---------|---------|
 | `br.cpf` | `###.###.###-##` | `529.982.247-25` |
 | `br.cnpj` | `##.###.###/####-##` | `11.222.333/0001-81` |
 
 #### Chile
 
-| Módulo | Formato | Ejemplo | Extra |
+| Módulo | Formato | Exemplo | Extra |
 |--------|---------|---------|-------|
 | `cl.rut` | `##.###.###-X` | `12.345.678-5` | `getCheckDigit(body)` |
 
 #### Argentina
 
-| Módulo | Formato | Ejemplo |
+| Módulo | Formato | Exemplo |
 |--------|---------|---------|
 | `ar.cuit` | `##-########-#` | `20-12345678-6` |
 | `ar.dni` | `##.###.###` | `12.345.678` |
 
-#### Colombia
+#### Colômbia
 
-| Módulo | Formato | Ejemplo |
+| Módulo | Formato | Exemplo |
 |--------|---------|---------|
 | `co.nit` | `###.###.###-#` | `800.000.000-1` |
 | `co.cc` | `#.###.###.###` | `1.234.567.890` |
 
-#### Perú
+#### Peru
 
-| Módulo | Formato | Ejemplo |
+| Módulo | Formato | Exemplo |
 |--------|---------|---------|
 | `pe.ruc` | `###########` | `20100070970` |
 | `pe.dni` | `########` | `12345678` |
 
 ---
 
-### Monedas
+### Moedas
 
 ```ts
 format(value: number, options?: { decimals?: number; symbol?: boolean }): string
@@ -147,13 +147,13 @@ symbol: string
 code: string
 ```
 
-| País | Módulo | Símbolo | Código | Ejemplo |
+| País | Módulo | Símbolo | Código | Exemplo |
 |------|--------|---------|--------|---------|
 | Brasil | `br.currency` | `R$` | `BRL` | `R$ 1.234,56` |
 | Chile | `cl.currency` | `$` | `CLP` | `$15.990` |
 | Argentina | `ar.currency` | `$` | `ARS` | `$ 1.234,56` |
-| Colombia | `co.currency` | `$` | `COP` | `$ 89.900` |
-| Perú | `pe.currency` | `S/` | `PEN` | `S/ 1,234.56` |
+| Colômbia | `co.currency` | `$` | `COP` | `$ 89.900` |
+| Peru | `pe.currency` | `S/` | `PEN` | `S/ 1,234.56` |
 
 ```ts
 br.currency.format(1234.56)                       // 'R$ 1.234,56'
@@ -164,7 +164,7 @@ br.currency.parse('R$ 1.234,56')                  // 1234.56
 
 ---
 
-### Teléfonos
+### Telefones
 
 ```ts
 format(value: string, options?: { international?: boolean }): string
@@ -173,17 +173,17 @@ mask: string | { mobile: string; landline: string }
 countryCode: string
 ```
 
-| País | Módulo | Código | Móvil | Fijo |
-|------|--------|--------|-------|------|
+| País | Módulo | Código | Celular | Fixo |
+|------|--------|--------|---------|------|
 | Brasil | `br.phone` | `+55` | `(##) #####-####` | `(##) ####-####` |
 | Chile | `cl.phone` | `+56` | `+56 9 #### ####` | `+56 # #### ####` |
 | Argentina | `ar.phone` | `+54` | `+54 9 ## ####-####` | — |
-| Colombia | `co.phone` | `+57` | `+57 ### ### ####` | — |
-| Perú | `pe.phone` | `+51` | `+51 ### ### ###` | — |
+| Colômbia | `co.phone` | `+57` | `+57 ### ### ####` | — |
+| Peru | `pe.phone` | `+51` | `+51 ### ### ###` | — |
 
 ---
 
-### Códigos postales
+### CEPs
 
 ```ts
 format(value: string): string
@@ -195,15 +195,15 @@ mask: string
 |------|--------|---------|---------|
 | Brasil | `br.zipcode` | `#####-###` | 8 |
 | Chile | `cl.zipcode` | `###-####` | 7 |
-| Argentina | `ar.zipcode` | `A####AAA` o `####` | CPA o 4 |
-| Colombia | `co.zipcode` | `######` | 6 |
-| Perú | `pe.zipcode` | `#####` | 5 |
+| Argentina | `ar.zipcode` | `A####AAA` ou `####` | CPA ou 4 |
+| Colômbia | `co.zipcode` | `######` | 6 |
+| Peru | `pe.zipcode` | `#####` | 5 |
 
 ---
 
 ### detect()
 
-Auto-detecta el país y tipo de un documento:
+Auto-detecta o país e tipo de um documento:
 
 ```ts
 import { detect } from '@zeluizr/palta'
@@ -218,55 +218,55 @@ detect('xyz')
 // null
 ```
 
-**Mapa de detección:**
+**Mapa de detecção:**
 
-| Longitud | Candidatos |
-|----------|-----------|
-| Contiene K | RUT (Chile) |
-| 8 dígitos | DNI Perú, DNI Argentina |
-| 10 dígitos | CC Colombia, NIT Colombia |
+| Comprimento | Candidatos |
+|-------------|-----------|
+| Contém K | RUT (Chile) |
+| 8 dígitos | DNI Peru, DNI Argentina |
+| 10 dígitos | CC Colômbia, NIT Colômbia |
 | 11 dígitos | CPF (BR), CUIT (AR), RUC (PE) |
 | 14 dígitos | CNPJ (BR) |
 
 ---
 
-## Cómo agregar un nuevo país
+## Como adicionar um novo país
 
-1. Crea `src/XX/` con los módulos necesarios
-2. Cada módulo debe implementar las interfaces en `src/types.ts`
-3. Crea `src/XX/index.ts` exportando todos los módulos
-4. Agrega `export * as xx from './XX/index.js'` en `src/index.ts`
-5. Agrega el entry en `tsup.config.ts` y el export en `package.json`
-6. Crea los tests en `tests/XX/`
+1. Crie `src/XX/` com os módulos necessários
+2. Cada módulo deve implementar as interfaces em `src/types.ts`
+3. Crie `src/XX/index.ts` exportando todos os módulos
+4. Adicione `export * as xx from './XX/index.js'` em `src/index.ts`
+5. Adicione o entry em `tsup.config.ts` e o export em `package.json`
+6. Crie testes em `tests/XX/`
 
 ---
 
-## Contribución
+## Contribuição
 
-¡Las contribuciones externas son muy bienvenidas! Este es un proyecto open source creado por [zeluizr](https://github.com/zeluizr) en asociación con [commente.me](https://commente.me).
+Contribuições externas são muito bem-vindas! Este é um projeto open source criado por [zeluizr](https://github.com/zeluizr) em parceria com [commente.me](https://commente.me).
 
 Para contribuir:
 
-1. Haz un fork del repositorio
-2. Crea una branch descriptiva (`git checkout -b feat/uy-rut`)
-3. Implementa tu cambio siguiendo las reglas del proyecto
-4. Ejecuta los tests (`npm test`) y verifica la cobertura (`npm run test:coverage`)
-5. Abre un Pull Request
+1. Faça um fork do repositório
+2. Crie uma branch descritiva (`git checkout -b feat/uy-rut`)
+3. Implemente sua mudança seguindo as regras abaixo
+4. Rode os testes (`npm test`) e verifique a cobertura (`npm run test:coverage`)
+5. Abra um Pull Request
 
-Reglas del proyecto:
+Regras do projeto:
 
-- Cero dependencias de runtime
-- TypeScript strict (sin `any`)
-- Funciones puras e inmutables
-- Cobertura mínima del 94%
-- Defensivo: manejar `null`/`undefined` sin romper
+- Zero dependências de runtime
+- TypeScript strict (sem `any`)
+- Funções puras e imutáveis
+- Cobertura mínima de 94%
+- Defensivo: lidar com `null`/`undefined` sem quebrar
 
 ---
 
-## Licencia
+## Licença
 
 [MIT](./LICENSE) © [zeluizr](https://github.com/zeluizr) & [commente.me](https://commente.me)
 
 ---
 
-[Português](./README.pt.md) · [English](./README.en.md)
+[Español](./README.md) · [English](./README.en.md)
