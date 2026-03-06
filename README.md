@@ -243,7 +243,17 @@ detect('xyz')
 
 ## Contribuição
 
-Pull requests são bem-vindos! Siga as regras:
+Contribuições externas são muito bem-vindas! Este é um projeto open source criado por [zeluizr](https://github.com/zeluizr) em parceria com [commente.me](https://commente.me).
+
+Para contribuir:
+
+1. Faça um fork do repositório
+2. Crie uma branch descritiva (`git checkout -b feat/uy-rut`)
+3. Implemente sua mudança seguindo as regras abaixo
+4. Rode os testes (`npm test`) e verifique a cobertura (`npm run test:coverage`)
+5. Abra um Pull Request
+
+Regras do projeto:
 
 - Zero dependências de runtime
 - TypeScript strict (sem `any`)
@@ -255,4 +265,4 @@ Pull requests são bem-vindos! Siga as regras:
 
 ## Licença
 
-[MIT](./LICENSE) © zeluizr
+[MIT](./LICENSE) © [zeluizr](https://github.com/zeluizr) & [commente.me](https://commente.me)
