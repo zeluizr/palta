@@ -5,6 +5,11 @@
   "keywords": ["brasil", "chile", "argentina", "colombia", "peru", "cpf", "cnpj", "rut", "cuit", "nit", "ruc", "format", "validate", "latam", "currency", "phone", "zipcode"],
   "author": "zeluizr",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeluizr/palta.git"
+  },
+  "homepage": "https://github.com/zeluizr/palta#readme",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
