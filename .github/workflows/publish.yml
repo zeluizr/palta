@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish to npm and GitHub Packages
 
 on:
   push:
@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: write   # required to create GitHub Release
       id-token: write   # required for provenance
+      packages: write   # required for GitHub Packages
 
     steps:
       - uses: actions/checkout@v4
@@ -28,9 +29,20 @@ jobs:
 
       - run: npm run build
 
+      # Publish to npmjs.com
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish to GitHub Packages
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
         env:
