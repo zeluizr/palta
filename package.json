@@ -1,8 +1,26 @@
 {
   "name": "palta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Formatação e validação de dados da América Latina — CPF, RUT, CUIT, moedas, telefones, CEPs e mais. Zero dependencies.",
-  "keywords": ["brasil", "chile", "argentina", "colombia", "peru", "cpf", "cnpj", "rut", "cuit", "nit", "ruc", "format", "validate", "latam", "currency", "phone", "zipcode"],
+  "keywords": [
+    "brasil",
+    "chile",
+    "argentina",
+    "colombia",
+    "peru",
+    "cpf",
+    "cnpj",
+    "rut",
+    "cuit",
+    "nit",
+    "ruc",
+    "format",
+    "validate",
+    "latam",
+    "currency",
+    "phone",
+    "zipcode"
+  ],
   "author": "zeluizr",
   "license": "MIT",
   "repository": {
@@ -46,9 +64,13 @@
       "require": "./dist/pe/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
