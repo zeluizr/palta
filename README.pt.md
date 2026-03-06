@@ -250,6 +250,14 @@ detect('xyz')
 
 ---
 
+## Roadmap
+
+Quer adicionar um novo país? Veja o roadmap completo com os 18 países pendentes, organizados por prioridade:
+
+📍 [Ver ROADMAP.pt.md](./ROADMAP.pt.md) · [Español](./ROADMAP.md) · [English](./ROADMAP.en.md)
+
+---
+
 ## Contribuição
 
 Contribuições externas são muito bem-vindas! Este é um projeto open source criado por [zeluizr](https://github.com/zeluizr) em parceria com [commente.me](https://commente.me).
