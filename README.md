@@ -39,15 +39,6 @@ npm install @zeluizr/palta
 
 ---
 
-## Demo
-
-Prueba todos los módulos en vivo:
-
-- 🌐 [palta.zeluizr.com/demo](https://palta.zeluizr.com/demo) — demo interactiva
-- 📄 [demo/index.html](./demo/index.html) — demo standalone (abre en el browser)
-
----
-
 ## Quick Start
 
 ```ts
@@ -64,10 +55,7 @@ br.zipcode.format('01310100')       // '01310-100'
 // Chile
 cl.rut.format('123456785')          // '12.345.678-5'
 cl.rut.validate('76.354.771-K')     // true
-cl.rut.getCheckDigit('76354771')    // 'K'
 cl.currency.format(15990)           // '$15.990'
-cl.phone.format('912345678')        // '+56 9 1234 5678'
-cl.zipcode.format('8320000')        // '832-0000'
 
 // Argentina
 ar.cuit.format('20123456786')       // '20-12345678-6'
@@ -78,11 +66,9 @@ ar.currency.format(1234.56)         // '$ 1.234,56'
 // Colombia
 co.nit.format('8000000001')         // '800.000.000-1'
 co.cc.format('1234567890')          // '1.234.567.890'
-co.currency.format(89900)           // '$ 89.900'
 
 // Perú
 pe.ruc.validate('20100070970')      // true
-pe.dni.validate('12345678')         // true
 pe.currency.format(1234.56)         // 'S/ 1,234.56'
 
 // Auto-detección
@@ -97,11 +83,8 @@ detect('529.982.247-25')
 Para mejor tree-shaking, importa solo el módulo que necesitas:
 
 ```ts
-// Solo Brasil
 import { br } from '@zeluizr/palta'
 import br from '@zeluizr/palta/br'
-
-// Solo un módulo
 import * as br from '@zeluizr/palta/br'
 ```
 
@@ -173,13 +156,6 @@ code: string
 | Colombia | `co.currency` | `$` | `COP` | `$ 89.900` |
 | Perú | `pe.currency` | `S/` | `PEN` | `S/ 1,234.56` |
 
-```ts
-br.currency.format(1234.56)                       // 'R$ 1.234,56'
-br.currency.format(1234.56, { symbol: false })    // '1.234,56'
-br.currency.format(1234, { decimals: 0 })         // 'R$ 1.234'
-br.currency.parse('R$ 1.234,56')                  // 1234.56
-```
-
 ---
 
 ### Teléfonos
@@ -236,8 +212,6 @@ detect('xyz')
 // null
 ```
 
-**Mapa de detección:**
-
 | Longitud | Candidatos |
 |----------|-----------|
 | Contiene K | RUT (Chile) |
@@ -248,6 +222,49 @@ detect('xyz')
 
 ---
 
+## Desarrollo local
+
+```bash
+# Clonar y configurar
+git clone https://github.com/zeluizr/palta.git
+cd palta
+npm install
+
+# Ejecutar tests
+npm test
+
+# Tests con cobertura
+npm run test:coverage
+
+# Build
+npm run build
+
+# Verificar tipos
+npm run typecheck
+```
+
+### Estructura del proyecto
+
+```
+src/
+├── br/           # Brasil — CPF, CNPJ, BRL, phone, zipcode
+├── cl/           # Chile — RUT, CLP, phone, zipcode
+├── ar/           # Argentina — CUIT, CUIL, DNI, ARS, phone, zipcode
+├── co/           # Colombia — NIT, CC, COP, phone, zipcode
+├── pe/           # Peru — RUC, DNI, PEN, phone, zipcode
+├── detect/       # Auto-detección de país y tipo
+├── types.ts      # Interfaces compartidas
+└── index.ts      # Barrel export
+tests/
+├── br/
+├── cl/
+├── ar/
+├── co/
+└── pe/
+```
+
+---
+
 ## Cómo agregar un nuevo país
 
 1. Crea `src/XX/` con los módulos necesarios
@@ -255,13 +272,13 @@ detect('xyz')
 3. Crea `src/XX/index.ts` exportando todos los módulos
 4. Agrega `export * as xx from './XX/index.js'` en `src/index.ts`
 5. Agrega el entry en `tsup.config.ts` y el export en `package.json`
-6. Crea los tests en `tests/XX/`
+6. Crea los tests en `tests/XX/` con cobertura ≥ 94%
 
 ---
 
 ## Roadmap
 
-¿Quieres agregar un nuevo país? Consulta el roadmap completo con los 18 países pendientes, organizados por prioridad:
+Ver el roadmap completo con los países pendientes, organizados por prioridad:
 
 📍 [Ver ROADMAP.md](./ROADMAP.md) · [Português](./ROADMAP.pt.md) · [English](./ROADMAP.en.md)
 
@@ -269,23 +286,59 @@ detect('xyz')
 
 ## Contribución
 
-¡Las contribuciones externas son muy bienvenidas! Este es un proyecto open source creado por [zeluizr](https://github.com/zeluizr) en asociación con [commente.me](https://commente.me).
+¡Las contribuciones externas son muy bienvenidas!
 
-Para contribuir:
+### Pasos
 
 1. Haz un fork del repositorio
-2. Crea una branch descriptiva (`git checkout -b feat/uy-rut`)
+2. Crea una branch descriptiva: `git checkout -b feat/uy-rut`
 3. Implementa tu cambio siguiendo las reglas del proyecto
-4. Ejecuta los tests (`npm test`) y verifica la cobertura (`npm run test:coverage`)
-5. Abre un Pull Request
+4. Ejecuta los tests: `npm test && npm run test:coverage`
+5. Abre un Pull Request describiendo el cambio
 
-Reglas del proyecto:
+### Convenciones de commit
 
-- Cero dependencias de runtime
-- TypeScript strict (sin `any`)
-- Funciones puras e inmutables
-- Cobertura mínima del 94%
-- Defensivo: manejar `null`/`undefined` sin romper
+| Prefijo | Uso |
+|---------|-----|
+| `feat:` | Nuevo país, módulo o función |
+| `fix:` | Corrección de bug o validación |
+| `test:` | Tests nuevos o corregidos |
+| `docs:` | Documentación |
+| `chore:` | Dependencias, config, build |
+| `refactor:` | Refactoring sin cambio de comportamiento |
+
+### Reglas del proyecto
+
+- ✅ Cero dependencias de runtime
+- ✅ TypeScript strict (sin `any`)
+- ✅ Funciones puras e inmutables
+- ✅ Cobertura mínima del 94%
+- ✅ Defensivo: manejar `null`/`undefined` sin romper
+- ✅ Cada función exportada debe tener tests
+
+---
+
+## Changelog
+
+### v1.2.0 — Marzo 2026
+
+- ✨ **Nuevo** Soporte Perú: validación RUC, DNI, formateo PEN y teléfonos
+- ✨ **Nuevo** Función `detect()` — detecta país y tipo automáticamente
+- 🔧 **Mejora** Inferencia de tipos TypeScript más precisa
+
+### v1.1.0 — Febrero 2026
+
+- ✨ **Nuevo** Soporte Colombia: NIT, Cédula de Ciudadanía, COP, teléfonos
+- ✨ **Nuevo** Imports tree-shakeable por país (`@zeluizr/palta/br`, etc.)
+- 🔧 **Mejora** Validación de dígito verificador mejorada para RUT, CUIT y NIT
+
+### v1.0.0 — Enero 2026
+
+- 🎉 **Lanzamiento** inicial de `@zeluizr/palta`
+- ✨ **Nuevo** Brasil: CPF, CNPJ, BRL, teléfono, CEP
+- ✨ **Nuevo** Chile: RUT, CLP, teléfono, código postal
+- ✨ **Nuevo** Argentina: CUIT/CUIL, DNI, ARS, teléfono, CPA
+- ✨ **Nuevo** Zero dependencias, < 5kb gzipped
 
 ---
 
