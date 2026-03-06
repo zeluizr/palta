@@ -278,4 +278,8 @@ Reglas del proyecto:
 
 ---
 
+Hecho con mucho amor ❤️ y café ☕ por [commente.me](https://commente.me)
+
+---
+
 [Português](./README.pt.md) · [English](./README.en.md)
