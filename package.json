@@ -1,5 +1,5 @@
 {
-  "name": "palta",
+  "name": "@zeluizr/palta",
   "version": "1.0.1",
   "description": "Formatação e validação de dados da América Latina — CPF, RUT, CUIT, moedas, telefones, CEPs e mais. Zero dependencies.",
   "keywords": [
