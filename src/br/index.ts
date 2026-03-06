@@ -1,0 +1,5 @@
+export * as cpf from './cpf.js'
+export * as cnpj from './cnpj.js'
+export * as currency from './currency.js'
+export * as phone from './phone.js'
+export * as zipcode from './zipcode.js'
