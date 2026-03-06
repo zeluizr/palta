@@ -1,3 +1,10 @@
 node_modules/
 dist/
+coverage/
 .claude/
+
+# Prompts Claude CLI
+PALTA-CLAUDE.md
+PALTA-TEAMMATE-PROMPT.md
+PALTA-REVIEW-PROMPT.md
+open-source-proposals.md
