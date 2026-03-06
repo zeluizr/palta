@@ -1,0 +1,5 @@
+export * as ruc from './ruc.js'
+export * as dni from './dni.js'
+export * as currency from './currency.js'
+export * as phone from './phone.js'
+export * as zipcode from './zipcode.js'
