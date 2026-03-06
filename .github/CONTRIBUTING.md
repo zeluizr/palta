@@ -2,6 +2,8 @@
 
 ¡Gracias por tu interés en contribuir! Este es un proyecto open source creado por [zeluizr](https://github.com/zeluizr) en asociación con [commente.me](https://commente.me).
 
+> También disponible en: [English](./CONTRIBUTING.en.md) · [Português](./CONTRIBUTING.pt.md)
+
 ---
 
 ## Antes de empezar

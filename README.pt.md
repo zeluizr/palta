@@ -4,6 +4,9 @@
 [![license](https://img.shields.io/npm/l/@zeluizr/palta)](./LICENSE)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@zeluizr/palta)](https://bundlephobia.com/package/@zeluizr/palta)
 [![website](https://img.shields.io/badge/website-palta.zeluizr.com-blue)](https://palta.zeluizr.com/)
+[![GitHub Stars](https://img.shields.io/github/stars/zeluizr/palta?style=flat)](https://github.com/zeluizr/palta/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/zeluizr/palta?style=flat)](https://github.com/zeluizr/palta/network/members)
+[![Open Source](https://img.shields.io/badge/open_source-%E2%9D%A4-brightgreen)](https://github.com/zeluizr/palta)
 
 **Formatação e validação de dados da América Latina.**
 
