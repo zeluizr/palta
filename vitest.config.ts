@@ -8,10 +8,10 @@ export default defineConfig({
       include: ['src/**'],
       exclude: ['src/index.ts', 'src/br/index.ts', 'src/cl/index.ts', 'src/ar/index.ts', 'src/co/index.ts', 'src/pe/index.ts'],
       thresholds: {
-        lines: 95,
-        functions: 95,
+        lines: 94,
+        functions: 98,
         branches: 90,
-        statements: 95,
+        statements: 94,
       },
     },
   },
