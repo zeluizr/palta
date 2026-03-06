@@ -4,585 +4,244 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>palta — demo interactiva</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'monospace'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ── Variables ───────────────────────────────────────── */
     :root {
-      --bg: #0d1117;
-      --bg2: #161b22;
-      --bg3: #1c2333;
-      --bg4: #21262d;
-      --border: #30363d;
-      --border2: #3d444d;
       --green: #4ade80;
       --green-dim: #22c55e;
       --green-faint: rgba(74, 222, 128, 0.08);
       --green-glow: rgba(74, 222, 128, 0.15);
-      --white: #e6edf3;
-      --muted: #8b949e;
-      --muted2: #6e7681;
       --red: #f85149;
       --red-faint: rgba(248, 81, 73, 0.1);
       --yellow: #e3b341;
-      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      --radius: 8px;
-      --radius-sm: 4px;
+      --white: #e6edf3;
+      --muted: #8b949e;
+      --muted2: #6e7681;
     }
 
-    html { scroll-behavior: smooth; }
+    /* ── Animations ──────────────────────────────────────── */
+    @keyframes bounce-logo {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+    @keyframes load-bar {
+      0%   { width: 0%;   margin-left: 0;    }
+      50%  { width: 60%;  margin-left: 20%;  }
+      100% { width: 0%;   margin-left: 100%; }
+    }
+    .anim-bounce { animation: bounce-logo 1s ease-in-out infinite; }
+    .anim-bar    { animation: load-bar 1.5s ease-in-out infinite; height: 100%; background: var(--green); border-radius: 2px; }
 
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: var(--sans);
-      font-size: 14px;
-      line-height: 1.6;
-      min-height: 100vh;
+    /* ── Dot pattern ─────────────────────────────────────── */
+    .dot-bg {
+      background-image: radial-gradient(rgba(74, 222, 128, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
     }
 
-    /* ── HEADER ─────────────────────────────────────────── */
-    header {
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(8px);
-    }
+    /* ── Scrollbar hide ──────────────────────────────────── */
+    .no-scroll::-webkit-scrollbar { display: none; }
+    .no-scroll { scrollbar-width: none; }
 
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      height: 56px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--white);
-    }
-
-    .logo-icon {
-      font-size: 24px;
-      line-height: 1;
-    }
-
-    .logo-text {
-      font-family: var(--mono);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: -0.5px;
-    }
-
-    .version-badge {
-      font-family: var(--mono);
-      font-size: 11px;
-      background: var(--green-faint);
-      color: var(--green);
-      border: 1px solid rgba(74, 222, 128, 0.3);
-      border-radius: 20px;
-      padding: 2px 10px;
-      white-space: nowrap;
-    }
-
-    .header-spacer { flex: 1; }
-
-    .gh-link {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      padding: 6px 12px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      transition: all 0.15s;
-    }
-
-    .gh-link:hover {
-      color: var(--white);
-      border-color: var(--border2);
-      background: var(--bg4);
-    }
-
-    .gh-icon {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    /* ── HERO ─────────────────────────────────────────────── */
-    .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 48px 24px 32px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
-    .hero h1 span { color: var(--green); }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .hero-pills {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .pill {
-      font-family: var(--mono);
-      font-size: 12px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 4px 12px;
-      color: var(--muted);
-    }
-
-    /* ── MAIN ─────────────────────────────────────────────── */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px 64px;
-    }
-
-    /* ── TABS ─────────────────────────────────────────────── */
-    .tabs {
-      display: flex;
-      gap: 2px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 32px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .tabs::-webkit-scrollbar { display: none; }
-
+    /* ── Tabs ────────────────────────────────────────────── */
     .tab {
       background: none;
       border: none;
       border-bottom: 2px solid transparent;
       color: var(--muted);
       cursor: pointer;
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
       font-size: 13px;
       font-weight: 500;
       padding: 10px 18px;
       margin-bottom: -1px;
-      transition: all 0.15s;
+      transition: all .15s;
       white-space: nowrap;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-
     .tab:hover { color: var(--white); }
+    .tab.active { color: var(--green); border-bottom-color: var(--green); }
 
-    .tab.active {
-      color: var(--green);
-      border-bottom-color: var(--green);
-    }
-
-    .tab-flag { font-size: 16px; }
-
-    /* ── TAB PANEL ────────────────────────────────────────── */
-    .tab-panel { display: none; }
+    /* ── Tab panels ──────────────────────────────────────── */
+    .tab-panel        { display: none; }
     .tab-panel.active { display: block; }
 
-    .panel-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .panel-subtitle {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 24px;
-    }
-
-    /* ── TABLE ────────────────────────────────────────────── */
+    /* ── Table ───────────────────────────────────────────── */
     .table-wrap {
       overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border: 1px solid #30363d;
+      border-radius: 8px;
       margin-bottom: 32px;
     }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    thead {
-      background: var(--bg3);
-    }
-
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #1c2333; }
     thead th {
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: .08em;
       color: var(--muted);
       padding: 10px 16px;
       text-align: left;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #30363d;
     }
-
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.1s;
-    }
-
+    tbody tr { border-bottom: 1px solid #30363d; transition: background .1s; }
     tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: var(--bg3); }
-
+    tbody tr:hover { background: #1c2333; }
     td {
       padding: 11px 16px;
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
       font-size: 13px;
       vertical-align: middle;
     }
+    .td-fn     { color: var(--green-dim); white-space: nowrap; }
+    .td-input  { color: var(--muted); }
+    .td-output { color: var(--white); font-weight: 500; }
+    .td-output.is-bool-true  { color: var(--green); }
+    .td-output.is-bool-false { color: var(--red); }
 
-    .td-fn {
-      color: var(--green-dim);
-      white-space: nowrap;
-    }
-
-    .td-input {
-      color: var(--muted);
-    }
-
-    .td-output {
-      color: var(--white);
-      font-weight: 500;
-    }
-
-    .td-output.is-bool-true {
-      color: var(--green);
-    }
-
-    .td-output.is-bool-false {
-      color: var(--red);
-    }
-
-    .td-output.is-string {
-      color: var(--white);
-    }
-
-    /* ── SECTION LABEL ────────────────────────────────────── */
+    /* ── Section label ───────────────────────────────────── */
     .section-label {
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em;
       color: var(--muted2);
-      padding: 8px 0 8px;
+      padding: 8px 0;
       margin-bottom: 8px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid #30363d;
     }
-
     .section-label:first-child { border-top: none; margin-top: 0; }
 
-    /* ── PLAYGROUND ───────────────────────────────────────── */
-    .playground {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin-top: 8px;
-    }
-
-    .playground-title {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--white);
-    }
-
-    .playground-desc {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
+    /* ── Playground ──────────────────────────────────────── */
     .detect-input {
       flex: 1;
-      background: var(--bg);
-      border: 1px solid var(--border2);
-      border-radius: var(--radius-sm);
+      background: #0d1117;
+      border: 1px solid #3d444d;
+      border-radius: 4px;
       color: var(--white);
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 15px;
       padding: 10px 14px;
       outline: none;
-      transition: border-color 0.15s;
+      transition: border-color .15s;
       max-width: 360px;
     }
-
     .detect-input::placeholder { color: var(--muted2); }
-
     .detect-input:focus {
       border-color: var(--green);
       box-shadow: 0 0 0 3px var(--green-glow);
     }
 
-    .input-hint {
-      font-size: 12px;
-      color: var(--muted2);
-      font-family: var(--mono);
-    }
-
-    .detect-result {
-      margin-top: 20px;
-      min-height: 100px;
-    }
-
-    .detect-empty {
-      color: var(--muted2);
-      font-family: var(--mono);
-      font-size: 13px;
-      padding: 20px 0;
-    }
-
+    /* ── Result card ─────────────────────────────────────── */
     .result-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background: #1c2333;
+      border: 1px solid #30363d;
+      border-radius: 8px;
       padding: 16px 20px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 16px;
     }
-
-    .result-card.valid-true {
-      border-color: rgba(74, 222, 128, 0.35);
-      background: var(--green-faint);
-    }
-
-    .result-card.valid-false {
-      border-color: rgba(248, 81, 73, 0.3);
-      background: var(--red-faint);
-    }
-
+    .result-card.valid-true  { border-color: rgba(74,222,128,.35); background: var(--green-faint); }
+    .result-card.valid-false { border-color: rgba(248,81,73,.3);   background: var(--red-faint);   }
     .result-field label {
       display: block;
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em;
       color: var(--muted2);
       margin-bottom: 4px;
     }
-
     .result-field .val {
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 16px;
       font-weight: 600;
       color: var(--white);
     }
-
-    .result-field .val.green { color: var(--green); }
-    .result-field .val.red { color: var(--red); }
+    .result-field .val.green  { color: var(--green);  }
+    .result-field .val.red    { color: var(--red);    }
     .result-field .val.yellow { color: var(--yellow); }
-
     .result-null {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background: #1c2333;
+      border: 1px solid #30363d;
+      border-radius: 8px;
       padding: 16px 20px;
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
       color: var(--muted);
     }
 
-    /* ── EXAMPLES CHIPS ────────────────────────────────────── */
-    .example-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
+    /* ── Chips ───────────────────────────────────────────── */
     .chip {
-      background: var(--bg4);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 4px;
       color: var(--muted);
       cursor: pointer;
-      font-family: var(--mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       padding: 4px 10px;
-      transition: all 0.15s;
+      transition: all .15s;
     }
-
     .chip:hover {
       border-color: var(--green);
       color: var(--green);
       background: var(--green-faint);
     }
 
-    /* ── LOADING ──────────────────────────────────────────── */
-    .loading-overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      gap: 16px;
-      transition: opacity 0.3s;
-    }
-
-    .loading-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .loading-logo { font-size: 48px; animation: bounce 1s ease-in-out infinite; }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .loading-text {
-      font-family: var(--mono);
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .loading-bar {
-      width: 200px;
-      height: 2px;
-      background: var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .loading-bar-inner {
-      height: 100%;
-      background: var(--green);
-      animation: load 1.5s ease-in-out infinite;
-    }
-
-    @keyframes load {
-      0% { width: 0%; margin-left: 0; }
-      50% { width: 60%; margin-left: 20%; }
-      100% { width: 0%; margin-left: 100%; }
-    }
-
-    /* ── ERROR BANNER ─────────────────────────────────────── */
-    .error-banner {
-      background: var(--red-faint);
-      border: 1px solid rgba(248, 81, 73, 0.4);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-bottom: 24px;
-      font-size: 13px;
-      display: none;
-    }
-
-    .error-banner.visible { display: block; }
-    .error-banner strong { color: var(--red); }
-
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
-      padding: 24px;
-      text-align: center;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 8px 24px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .footer-inner a {
-      color: var(--green-dim);
-      text-decoration: none;
-    }
-
-    .footer-inner a:hover { text-decoration: underline; }
-
-    .footer-sep { color: var(--muted2); }
-
-    /* ── RESPONSIVE ───────────────────────────────────────── */
+    /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 600px) {
-      .hero h1 { font-size: 26px; }
+      h1 { font-size: 26px !important; }
       .detect-input { max-width: 100%; }
       .input-row { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
-<body>
+<body class="bg-[#0d1117] text-[#e6edf3] font-sans text-sm leading-relaxed min-h-screen">
 
-<!-- Loading overlay -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-logo">🥑</div>
-  <div class="loading-text">Cargando palta desde CDN...</div>
-  <div class="loading-bar"><div class="loading-bar-inner"></div></div>
+<!-- ── Loading overlay ─────────────────────────────────── -->
+<div id="loadingOverlay" class="fixed inset-0 bg-[#0d1117] flex flex-col items-center justify-center z-[999] gap-4 transition-opacity duration-300">
+  <div class="text-5xl leading-none anim-bounce">🥑</div>
+  <div class="font-mono text-sm text-[#8b949e]">Cargando palta desde CDN...</div>
+  <div class="w-48 h-0.5 bg-[#30363d] rounded-full overflow-hidden">
+    <div class="anim-bar"></div>
+  </div>
 </div>
 
-<!-- Header -->
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <span class="logo-icon">🥑</span>
-      <span class="logo-text">palta</span>
+<!-- ── Header ──────────────────────────────────────────── -->
+<header class="bg-[#161b22] border-b border-[#30363d] sticky top-0 z-50 backdrop-blur-sm">
+  <div class="max-w-[1100px] mx-auto px-6 flex items-center gap-3 h-14">
+    <a href="https://palta.zeluizr.com" class="flex items-center gap-2.5 no-underline">
+      <span class="text-2xl leading-none">🥑</span>
+      <span class="font-mono text-lg font-bold text-[#4ade80] tracking-tight">palta</span>
     </a>
-    <span class="version-badge" id="versionBadge">v1.0.9</span>
-    <div class="header-spacer"></div>
-    <a href="https://github.com/zeluizr/palta" target="_blank" rel="noopener" class="gh-link">
-      <svg class="gh-icon" viewBox="0 0 16 16">
+    <span class="font-mono text-sm text-[#6e7681]">/</span>
+    <span class="font-mono text-sm text-[#8b949e]">demo</span>
+    <span id="versionBadge" class="font-mono text-[11px] bg-[rgba(74,222,128,0.08)] text-[#4ade80] border border-[rgba(74,222,128,0.3)] rounded-full px-2.5 py-0.5 whitespace-nowrap">v1.0.10</span>
+
+    <div class="flex-1"></div>
+
+    <a href="https://github.com/zeluizr/palta" target="_blank" rel="noopener"
+       class="flex items-center gap-1.5 text-[#8b949e] text-[13px] px-3 py-1.5 border border-[#30363d] rounded hover:text-[#e6edf3] hover:border-[#3d444d] hover:bg-[#21262d] transition-all duration-150 no-underline">
+      <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 16 16">
         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
       </svg>
       GitHub
@@ -590,49 +249,57 @@
   </div>
 </header>
 
-<!-- Hero -->
-<div class="hero">
-  <h1>Demo <span>@zeluizr/palta</span></h1>
-  <p>Formateo y validación de datos de América Latina. CPF, RUT, CUIT, monedas, teléfonos y más. Zero dependencies.</p>
-  <div class="hero-pills">
-    <span class="pill">Brasil</span>
-    <span class="pill">Chile</span>
-    <span class="pill">Argentina</span>
-    <span class="pill">Colombia</span>
-    <span class="pill">Peru</span>
-    <span class="pill">detect()</span>
-    <span class="pill">zero deps</span>
-    <span class="pill">ES modules</span>
+<!-- ── Hero ────────────────────────────────────────────── -->
+<div class="dot-bg border-b border-[#30363d]">
+  <div class="max-w-[1100px] mx-auto px-6 py-12 text-center">
+    <h1 class="text-4xl font-bold tracking-tight leading-tight mb-3" style="letter-spacing:-1px">
+      Demo <span class="text-[#4ade80]">@zeluizr/palta</span>
+    </h1>
+    <p class="text-[#8b949e] text-[15px] max-w-lg mx-auto">
+      Formateo y validación de datos de América Latina. CPF, RUT, CUIT, monedas, teléfonos y más. Zero dependencies.
+    </p>
+    <div class="flex gap-2 justify-center flex-wrap mt-5">
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">Brasil</span>
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">Chile</span>
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">Argentina</span>
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">Colombia</span>
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">Peru</span>
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">detect()</span>
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">zero deps</span>
+      <span class="font-mono text-xs bg-[#1c2333] border border-[#30363d] rounded-full px-3 py-1 text-[#8b949e]">ES modules</span>
+    </div>
   </div>
 </div>
 
-<!-- Error banner -->
-<main>
-  <div class="error-banner" id="errorBanner">
-    <strong>Error al cargar el paquete desde CDN.</strong> Verifica tu conexion a internet o consulta
-    <a href="https://github.com/zeluizr/palta" target="_blank">el repositorio</a> para instrucciones de instalacion local.
-    <br><small id="errorDetail"></small>
+<!-- ── Main ─────────────────────────────────────────────── -->
+<main class="max-w-[1100px] mx-auto px-6 pb-16">
+
+  <!-- Error banner -->
+  <div id="errorBanner" class="hidden mt-6 bg-[rgba(248,81,73,0.1)] border border-[rgba(248,81,73,0.4)] rounded-lg px-5 py-4 text-[13px]">
+    <strong class="text-[#f85149]">Error al cargar el paquete desde CDN.</strong> Verifica tu conexión a internet o consulta
+    <a href="https://github.com/zeluizr/palta" target="_blank" class="text-[#4ade80] hover:underline">el repositorio</a> para instrucciones de instalación local.
+    <br><small id="errorDetail" class="text-[#8b949e]"></small>
   </div>
 
   <!-- Tabs -->
-  <div class="tabs" role="tablist">
-    <button class="tab active" role="tab" data-tab="br"><span class="tab-flag">&#127463;&#127479;</span> BR</button>
-    <button class="tab" role="tab" data-tab="cl"><span class="tab-flag">&#127464;&#127473;</span> CL</button>
-    <button class="tab" role="tab" data-tab="ar"><span class="tab-flag">&#127462;&#127479;</span> AR</button>
-    <button class="tab" role="tab" data-tab="co"><span class="tab-flag">&#127464;&#127476;</span> CO</button>
-    <button class="tab" role="tab" data-tab="pe"><span class="tab-flag">&#127477;&#127466;</span> PE</button>
-    <button class="tab" role="tab" data-tab="detect"><span class="tab-flag">&#128269;</span> detect</button>
+  <div class="flex gap-0.5 border-b border-[#30363d] mt-8 mb-8 overflow-x-auto no-scroll" role="tablist">
+    <button class="tab active" role="tab" data-tab="br"><span class="text-base">&#127463;&#127479;</span> BR</button>
+    <button class="tab"        role="tab" data-tab="cl"><span class="text-base">&#127464;&#127473;</span> CL</button>
+    <button class="tab"        role="tab" data-tab="ar"><span class="text-base">&#127462;&#127479;</span> AR</button>
+    <button class="tab"        role="tab" data-tab="co"><span class="text-base">&#127464;&#127476;</span> CO</button>
+    <button class="tab"        role="tab" data-tab="pe"><span class="text-base">&#127477;&#127466;</span> PE</button>
+    <button class="tab"        role="tab" data-tab="detect"><span class="text-base">&#128269;</span> detect</button>
   </div>
 
-  <!-- BR panel -->
+  <!-- ── BR panel ──────────────────────────────────────── -->
   <div class="tab-panel active" id="panel-br">
-    <div class="panel-title">&#127463;&#127479; Brasil</div>
-    <div class="panel-subtitle">CPF, CNPJ, moeda, telefone, CEP — via <code>br.*</code></div>
+    <div class="text-lg font-semibold mb-1.5 flex items-center gap-2.5">&#127463;&#127479; Brasil</div>
+    <div class="text-[#8b949e] text-[13px] mb-6">CPF, CNPJ, moeda, telefone, CEP — via <code class="font-mono text-[#4ade80] bg-[rgba(74,222,128,0.08)] px-1.5 py-0.5 rounded text-xs">br.*</code></div>
 
     <div class="section-label">CPF</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-br-cpf"></tbody>
       </table>
     </div>
@@ -640,7 +307,7 @@
     <div class="section-label">CNPJ</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-br-cnpj"></tbody>
       </table>
     </div>
@@ -648,21 +315,21 @@
     <div class="section-label">Moeda, Telefone, CEP</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-br-misc"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- CL panel -->
+  <!-- ── CL panel ──────────────────────────────────────── -->
   <div class="tab-panel" id="panel-cl">
-    <div class="panel-title">&#127464;&#127473; Chile</div>
-    <div class="panel-subtitle">RUT, moneda, telefono — via <code>cl.*</code></div>
+    <div class="text-lg font-semibold mb-1.5 flex items-center gap-2.5">&#127464;&#127473; Chile</div>
+    <div class="text-[#8b949e] text-[13px] mb-6">RUT, moneda, telefono — via <code class="font-mono text-[#4ade80] bg-[rgba(74,222,128,0.08)] px-1.5 py-0.5 rounded text-xs">cl.*</code></div>
 
     <div class="section-label">RUT</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-cl-rut"></tbody>
       </table>
     </div>
@@ -670,21 +337,21 @@
     <div class="section-label">Moneda, Telefono</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-cl-misc"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- AR panel -->
+  <!-- ── AR panel ──────────────────────────────────────── -->
   <div class="tab-panel" id="panel-ar">
-    <div class="panel-title">&#127462;&#127479; Argentina</div>
-    <div class="panel-subtitle">CUIT, DNI, moneda — via <code>ar.*</code></div>
+    <div class="text-lg font-semibold mb-1.5 flex items-center gap-2.5">&#127462;&#127479; Argentina</div>
+    <div class="text-[#8b949e] text-[13px] mb-6">CUIT, DNI, moneda — via <code class="font-mono text-[#4ade80] bg-[rgba(74,222,128,0.08)] px-1.5 py-0.5 rounded text-xs">ar.*</code></div>
 
     <div class="section-label">CUIT</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-ar-cuit"></tbody>
       </table>
     </div>
@@ -692,58 +359,60 @@
     <div class="section-label">DNI, Moneda</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-ar-misc"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- CO panel -->
+  <!-- ── CO panel ──────────────────────────────────────── -->
   <div class="tab-panel" id="panel-co">
-    <div class="panel-title">&#127464;&#127476; Colombia</div>
-    <div class="panel-subtitle">NIT, Cedula, moneda — via <code>co.*</code></div>
+    <div class="text-lg font-semibold mb-1.5 flex items-center gap-2.5">&#127464;&#127476; Colombia</div>
+    <div class="text-[#8b949e] text-[13px] mb-6">NIT, Cedula, moneda — via <code class="font-mono text-[#4ade80] bg-[rgba(74,222,128,0.08)] px-1.5 py-0.5 rounded text-xs">co.*</code></div>
 
     <div class="section-label">NIT, Cedula (CC), Moneda</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-co"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- PE panel -->
+  <!-- ── PE panel ──────────────────────────────────────── -->
   <div class="tab-panel" id="panel-pe">
-    <div class="panel-title">&#127477;&#127466; Peru</div>
-    <div class="panel-subtitle">RUC, DNI, moneda — via <code>pe.*</code></div>
+    <div class="text-lg font-semibold mb-1.5 flex items-center gap-2.5">&#127477;&#127466; Peru</div>
+    <div class="text-[#8b949e] text-[13px] mb-6">RUC, DNI, moneda — via <code class="font-mono text-[#4ade80] bg-[rgba(74,222,128,0.08)] px-1.5 py-0.5 rounded text-xs">pe.*</code></div>
 
     <div class="section-label">RUC, DNI, Moneda</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-pe"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- detect panel -->
+  <!-- ── detect panel ──────────────────────────────────── -->
   <div class="tab-panel" id="panel-detect">
-    <div class="panel-title">&#128269; detect()</div>
-    <div class="panel-subtitle">Auto-deteccion de pais y tipo a partir de cualquier valor de entrada</div>
+    <div class="text-lg font-semibold mb-1.5 flex items-center gap-2.5">&#128269; detect()</div>
+    <div class="text-[#8b949e] text-[13px] mb-6">Auto-detección de país y tipo a partir de cualquier valor de entrada</div>
 
     <div class="section-label">Ejemplos precargados</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Funcion</th><th>Input</th><th>Output</th></tr></thead>
+        <thead><tr><th>Función</th><th>Input</th><th>Output</th></tr></thead>
         <tbody id="table-detect"></tbody>
       </table>
     </div>
 
     <div class="section-label">Playground interactivo</div>
-    <div class="playground">
-      <div class="playground-title">&#9654; Prueba detect() en tiempo real</div>
-      <div class="playground-desc">Escribe cualquier valor: CPF, CNPJ, RUT, CUIT, DNI, NIT, RUC...</div>
-      <div class="input-row">
+    <div class="bg-[#161b22] border border-[#30363d] rounded-lg p-6 mt-2">
+      <div class="text-[15px] font-semibold mb-1 flex items-center gap-2 text-[#e6edf3]">
+        &#9654; Prueba detect() en tiempo real
+      </div>
+      <div class="text-[#8b949e] text-[13px] mb-5">Escribe cualquier valor: CPF, CNPJ, RUT, CUIT, DNI, NIT, RUC...</div>
+      <div class="input-row flex gap-2.5 items-center">
         <input
           type="text"
           class="detect-input"
@@ -752,9 +421,9 @@
           autocomplete="off"
           spellcheck="false"
         />
-        <span class="input-hint" id="charCount">0 chars</span>
+        <span class="font-mono text-[12px] text-[#6e7681]" id="charCount">0 chars</span>
       </div>
-      <div class="example-chips">
+      <div class="flex flex-wrap gap-2 mt-3.5">
         <span class="chip" data-value="11144477735">CPF BR</span>
         <span class="chip" data-value="11222333000181">CNPJ BR</span>
         <span class="chip" data-value="12345678K">RUT CL</span>
@@ -764,22 +433,23 @@
         <span class="chip" data-value="1234567890">CC CO</span>
         <span class="chip" data-value="20100070971">RUC PE</span>
       </div>
-      <div class="detect-result" id="detectResult">
-        <div class="detect-empty">Escribe un valor para ver el resultado de detect()...</div>
+      <div class="mt-5 min-h-[100px]" id="detectResult">
+        <div class="font-mono text-[13px] text-[#6e7681] py-5">Escribe un valor para ver el resultado de detect()...</div>
       </div>
     </div>
   </div>
+
 </main>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-inner">
-    <span>&#129371; <strong>palta</strong></span>
-    <span class="footer-sep">|</span>
-    <a href="https://palta.zeluizr.com" target="_blank" rel="noopener">palta.zeluizr.com</a>
-    <span class="footer-sep">|</span>
-    <a href="https://github.com/zeluizr/palta" target="_blank" rel="noopener">github.com/zeluizr/palta</a>
-    <span class="footer-sep">|</span>
+<!-- ── Footer ───────────────────────────────────────────── -->
+<footer class="border-t border-[#30363d] bg-[#161b22] py-6">
+  <div class="max-w-[1100px] mx-auto px-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[#8b949e] text-[13px]">
+    <span>&#129371; <strong class="text-[#e6edf3]">palta</strong></span>
+    <span class="text-[#6e7681]">|</span>
+    <a href="https://palta.zeluizr.com" target="_blank" rel="noopener" class="text-[#22c55e] hover:underline no-underline">palta.zeluizr.com</a>
+    <span class="text-[#6e7681]">|</span>
+    <a href="https://github.com/zeluizr/palta" target="_blank" rel="noopener" class="text-[#22c55e] hover:underline no-underline">github.com/zeluizr/palta</a>
+    <span class="text-[#6e7681]">|</span>
     <span>MIT License</span>
   </div>
 </footer>
@@ -787,7 +457,7 @@
 <script type="module">
   import { br, cl, ar, co, pe, detect } from 'https://cdn.jsdelivr.net/npm/@zeluizr/palta@latest/dist/index.js'
 
-  const overlay = document.getElementById('loadingOverlay')
+  const overlay     = document.getElementById('loadingOverlay')
   const errorBanner = document.getElementById('errorBanner')
 
   // ── helpers ──────────────────────────────────────────────
@@ -825,106 +495,101 @@
   function populateTables() {
     // BR — CPF
     fill('table-br-cpf', [
-      ['br.cpf.format("11144477735")',   '11144477735',   br.cpf.format('11144477735')],
+      ['br.cpf.format("11144477735")',    '11144477735',    br.cpf.format('11144477735')],
       ['br.cpf.format("000.000.000-00")', '000.000.000-00', br.cpf.format('000.000.000-00')],
-      ['br.cpf.validate("11144477735")', '11144477735',   br.cpf.validate('11144477735')],
-      ['br.cpf.validate("00000000000")', '00000000000',   br.cpf.validate('00000000000')],
-      ['br.cpf.validate("12345678901")', '12345678901',   br.cpf.validate('12345678901')],
+      ['br.cpf.validate("11144477735")',  '11144477735',    br.cpf.validate('11144477735')],
+      ['br.cpf.validate("00000000000")',  '00000000000',    br.cpf.validate('00000000000')],
+      ['br.cpf.validate("12345678901")',  '12345678901',    br.cpf.validate('12345678901')],
     ])
 
     // BR — CNPJ
     fill('table-br-cnpj', [
-      ['br.cnpj.format("11222333000181")',   '11222333000181',   br.cnpj.format('11222333000181')],
+      ['br.cnpj.format("11222333000181")',     '11222333000181',     br.cnpj.format('11222333000181')],
       ['br.cnpj.format("11.222.333/0001-81")', '11.222.333/0001-81', br.cnpj.format('11.222.333/0001-81')],
-      ['br.cnpj.validate("11222333000181")', '11222333000181',   br.cnpj.validate('11222333000181')],
-      ['br.cnpj.validate("00000000000000")', '00000000000000',   br.cnpj.validate('00000000000000')],
+      ['br.cnpj.validate("11222333000181")',   '11222333000181',     br.cnpj.validate('11222333000181')],
+      ['br.cnpj.validate("00000000000000")',   '00000000000000',     br.cnpj.validate('00000000000000')],
     ])
 
     // BR — misc
     fill('table-br-misc', [
-      ['br.currency.format(1234567.89)',            1234567.89,       br.currency.format(1234567.89)],
-      ['br.currency.format(9999, { symbol: false })', 9999,           br.currency.format(9999, { symbol: false })],
-      ['br.currency.format(-250.5)',                -250.5,           br.currency.format(-250.5)],
-      ['br.phone.format("11987654321")',             '11987654321',    br.phone.format('11987654321')],
-      ['br.phone.format("1132001234")',              '1132001234',     br.phone.format('1132001234')],
+      ['br.currency.format(1234567.89)',                    1234567.89,  br.currency.format(1234567.89)],
+      ['br.currency.format(9999, { symbol: false })',       9999,        br.currency.format(9999, { symbol: false })],
+      ['br.currency.format(-250.5)',                        -250.5,      br.currency.format(-250.5)],
+      ['br.phone.format("11987654321")',                    '11987654321', br.phone.format('11987654321')],
+      ['br.phone.format("1132001234")',                     '1132001234',  br.phone.format('1132001234')],
       ['br.phone.format("11987654321", { international: true })', '11987654321', br.phone.format('11987654321', { international: true })],
-      ['br.zipcode.format("01310100")',              '01310100',       br.zipcode.format('01310100')],
-      ['br.zipcode.format("01310-100")',             '01310-100',      br.zipcode.format('01310-100')],
+      ['br.zipcode.format("01310100")',                     '01310100',  br.zipcode.format('01310100')],
+      ['br.zipcode.format("01310-100")',                    '01310-100', br.zipcode.format('01310-100')],
     ])
 
     // CL — RUT
     fill('table-cl-rut', [
-      ['cl.rut.format("123456785")',      '123456785',     cl.rut.format('123456785')],
-      ['cl.rut.format("12345678K")',      '12345678K',     cl.rut.format('12345678K')],
-      ['cl.rut.validate("123456785")',    '123456785',     cl.rut.validate('123456785')],
-      ['cl.rut.validate("12345678K")',    '12345678K',     cl.rut.validate('12345678K')],
-      ['cl.rut.validate("12345678-5")',   '12345678-5',    cl.rut.validate('12345678-5')],
-      ['cl.rut.validate("99999999Z")',    '99999999Z',     cl.rut.validate('99999999Z')],
-      ['cl.rut.getCheckDigit("12345678")', '12345678',     cl.rut.getCheckDigit('12345678')],
-      ['cl.rut.getCheckDigit("7654321")', '7654321',       cl.rut.getCheckDigit('7654321')],
+      ['cl.rut.format("123456785")',       '123456785',   cl.rut.format('123456785')],
+      ['cl.rut.format("12345678K")',       '12345678K',   cl.rut.format('12345678K')],
+      ['cl.rut.validate("123456785")',     '123456785',   cl.rut.validate('123456785')],
+      ['cl.rut.validate("12345678K")',     '12345678K',   cl.rut.validate('12345678K')],
+      ['cl.rut.validate("12345678-5")',    '12345678-5',  cl.rut.validate('12345678-5')],
+      ['cl.rut.validate("99999999Z")',     '99999999Z',   cl.rut.validate('99999999Z')],
+      ['cl.rut.getCheckDigit("12345678")', '12345678',    cl.rut.getCheckDigit('12345678')],
+      ['cl.rut.getCheckDigit("7654321")',  '7654321',     cl.rut.getCheckDigit('7654321')],
     ])
 
     // CL — misc
     fill('table-cl-misc', [
-      ['cl.currency.format(1500000)',              1500000,           cl.currency.format(1500000)],
-      ['cl.currency.format(50000, { symbol: false })', 50000,         cl.currency.format(50000, { symbol: false })],
-      ['cl.currency.format(-12500)',              -12500,             cl.currency.format(-12500)],
-      ['cl.phone.format("912345678")',             '912345678',        cl.phone.format('912345678')],
-      ['cl.phone.format("221234567")',             '221234567',        cl.phone.format('221234567')],
+      ['cl.currency.format(1500000)',                        1500000,  cl.currency.format(1500000)],
+      ['cl.currency.format(50000, { symbol: false })',       50000,    cl.currency.format(50000, { symbol: false })],
+      ['cl.currency.format(-12500)',                         -12500,   cl.currency.format(-12500)],
+      ['cl.phone.format("912345678")',                       '912345678', cl.phone.format('912345678')],
+      ['cl.phone.format("221234567")',                       '221234567', cl.phone.format('221234567')],
       ['cl.phone.format("912345678", { international: false })', '912345678', cl.phone.format('912345678', { international: false })],
     ])
 
     // AR — CUIT
     fill('table-ar-cuit', [
-      ['ar.cuit.format("20123456780")',      '20123456780',    ar.cuit.format('20123456780')],
-      ['ar.cuit.format("27123456784")',      '27123456784',    ar.cuit.format('27123456784')],
-      ['ar.cuit.validate("20123456780")',    '20123456780',    ar.cuit.validate('20123456780')],
-      ['ar.cuit.validate("27123456784")',    '27123456784',    ar.cuit.validate('27123456784')],
-      ['ar.cuit.validate("00000000000")',    '00000000000',    ar.cuit.validate('00000000000')],
+      ['ar.cuit.format("20123456780")',   '20123456780',  ar.cuit.format('20123456780')],
+      ['ar.cuit.format("27123456784")',   '27123456784',  ar.cuit.format('27123456784')],
+      ['ar.cuit.validate("20123456780")', '20123456780',  ar.cuit.validate('20123456780')],
+      ['ar.cuit.validate("27123456784")', '27123456784',  ar.cuit.validate('27123456784')],
+      ['ar.cuit.validate("00000000000")', '00000000000',  ar.cuit.validate('00000000000')],
     ])
 
     // AR — misc
     fill('table-ar-misc', [
-      ['ar.dni.format("12345678")',           '12345678',       ar.dni.format('12345678')],
-      ['ar.dni.format("5678901")',            '5678901',        ar.dni.format('5678901')],
-      ['ar.currency.format(1234567.89)',      1234567.89,       ar.currency.format(1234567.89)],
-      ['ar.currency.format(500000)',          500000,           ar.currency.format(500000)],
-      ['ar.currency.format(-1500, { symbol: false })', -1500,  ar.currency.format(-1500, { symbol: false })],
+      ['ar.dni.format("12345678")',                     '12345678',  ar.dni.format('12345678')],
+      ['ar.dni.format("5678901")',                      '5678901',   ar.dni.format('5678901')],
+      ['ar.currency.format(1234567.89)',                1234567.89,  ar.currency.format(1234567.89)],
+      ['ar.currency.format(500000)',                    500000,      ar.currency.format(500000)],
+      ['ar.currency.format(-1500, { symbol: false })', -1500,       ar.currency.format(-1500, { symbol: false })],
     ])
 
     // CO
     fill('table-co', [
-      ['co.nit.format("9004444444")',         '9004444444',     co.nit.format('9004444444')],
-      ['co.nit.format("9004444444-5")',       '9004444444-5',   co.nit.format('9004444444-5')],
-      ['co.nit.validate("9004444444")',       '9004444444',     co.nit.validate('9004444444')],
-      ['co.cc.format("1234567890")',          '1234567890',     co.cc.format('1234567890')],
-      ['co.cc.format("98765432")',            '98765432',       co.cc.format('98765432')],
-      ['co.currency.format(4500000)',         4500000,          co.currency.format(4500000)],
-      ['co.currency.format(980000)',          980000,           co.currency.format(980000)],
-      ['co.currency.format(-75000, { symbol: false })', -75000, co.currency.format(-75000, { symbol: false })],
+      ['co.nit.format("9004444444")',                    '9004444444',   co.nit.format('9004444444')],
+      ['co.nit.format("9004444444-5")',                  '9004444444-5', co.nit.format('9004444444-5')],
+      ['co.nit.validate("9004444444")',                  '9004444444',   co.nit.validate('9004444444')],
+      ['co.cc.format("1234567890")',                     '1234567890',   co.cc.format('1234567890')],
+      ['co.cc.format("98765432")',                       '98765432',     co.cc.format('98765432')],
+      ['co.currency.format(4500000)',                    4500000,        co.currency.format(4500000)],
+      ['co.currency.format(980000)',                     980000,         co.currency.format(980000)],
+      ['co.currency.format(-75000, { symbol: false })', -75000,         co.currency.format(-75000, { symbol: false })],
     ])
 
     // PE
     fill('table-pe', [
-      ['pe.ruc.validate("20100070971")',      '20100070971',    pe.ruc.validate('20100070971')],
-      ['pe.ruc.validate("10000000001")',      '10000000001',    pe.ruc.validate('10000000001')],
-      ['pe.ruc.validate("99999999999")',      '99999999999',    pe.ruc.validate('99999999999')],
-      ['pe.dni.validate("12345678")',         '12345678',       pe.dni.validate('12345678')],
-      ['pe.dni.validate("1234567")',          '1234567',        pe.dni.validate('1234567')],
-      ['pe.currency.format(350.75)',          350.75,           pe.currency.format(350.75)],
-      ['pe.currency.format(12500)',           12500,            pe.currency.format(12500)],
-      ['pe.currency.format(-99.99)',          -99.99,           pe.currency.format(-99.99)],
+      ['pe.ruc.validate("20100070971")', '20100070971', pe.ruc.validate('20100070971')],
+      ['pe.ruc.validate("10000000001")', '10000000001', pe.ruc.validate('10000000001')],
+      ['pe.ruc.validate("99999999999")', '99999999999', pe.ruc.validate('99999999999')],
+      ['pe.dni.validate("12345678")',    '12345678',    pe.dni.validate('12345678')],
+      ['pe.dni.validate("1234567")',     '1234567',     pe.dni.validate('1234567')],
+      ['pe.currency.format(350.75)',     350.75,        pe.currency.format(350.75)],
+      ['pe.currency.format(12500)',      12500,         pe.currency.format(12500)],
+      ['pe.currency.format(-99.99)',     -99.99,        pe.currency.format(-99.99)],
     ])
 
     // detect examples
-    const detectExamples = [
-      ['11144477735', 'CPF (BR)'],
-      ['11222333000181', 'CNPJ (BR)'],
-      ['123456785', 'RUT (CL)'],
-    ]
-
+    const detectExamples = ['11144477735', '11222333000181', '123456785']
     const tbody = document.getElementById('table-detect')
-    detectExamples.forEach(([val]) => {
+    detectExamples.forEach(val => {
       const result = detect(val)
       if (!result) return
       const json = JSON.stringify(result)
@@ -939,9 +604,9 @@
   }
 
   // ── detect playground ─────────────────────────────────────
-  const detectInput = document.getElementById('detectInput')
+  const detectInput  = document.getElementById('detectInput')
   const detectResult = document.getElementById('detectResult')
-  const charCount = document.getElementById('charCount')
+  const charCount    = document.getElementById('charCount')
 
   function countryFlag(code) {
     const flags = { BR: '&#127463;&#127479;', CL: '&#127464;&#127473;', AR: '&#127462;&#127479;', CO: '&#127464;&#127476;', PE: '&#127477;&#127466;' }
@@ -950,7 +615,7 @@
 
   function renderDetectResult(value) {
     if (!value || value.trim() === '') {
-      detectResult.innerHTML = '<div class="detect-empty">Escribe un valor para ver el resultado de detect()...</div>'
+      detectResult.innerHTML = '<div class="font-mono text-[13px] text-[#6e7681] py-5">Escribe un valor para ver el resultado de detect()...</div>'
       return
     }
 
@@ -958,7 +623,7 @@
     try {
       result = detect(value)
     } catch (e) {
-      detectResult.innerHTML = `<div class="detect-empty" style="color:var(--red)">Error: ${escHtml(String(e))}</div>`
+      detectResult.innerHTML = `<div class="font-mono text-[13px] py-5" style="color:var(--red)">Error: ${escHtml(String(e))}</div>`
       return
     }
 
@@ -966,7 +631,7 @@
       detectResult.innerHTML = `
         <div class="result-null">
           <code>detect("${escHtml(value)}")</code> &rarr; <strong>null</strong><br>
-          <span style="color:var(--muted2);font-size:12px;margin-top:6px;display:block">No se pudo identificar el tipo. Verifica que el valor tenga entre 8 y 14 digitos.</span>
+          <span style="color:var(--muted2);font-size:12px;margin-top:6px;display:block">No se pudo identificar el tipo. Verifica que el valor tenga entre 8 y 14 dígitos.</span>
         </div>
       `
       return
@@ -975,20 +640,20 @@
     detectResult.innerHTML = `
       <div class="result-card valid-${result.valid}">
         <div class="result-field">
-          <label>Pais</label>
+          <label>País</label>
           <div class="val yellow">${countryFlag(result.country)} ${escHtml(result.country)}</div>
         </div>
         <div class="result-field">
           <label>Tipo</label>
-          <div class="val" style="color:var(--white)">${escHtml(result.type.toUpperCase())}</div>
+          <div class="val">${escHtml(result.type.toUpperCase())}</div>
         </div>
         <div class="result-field">
-          <label>Valido</label>
+          <label>Válido</label>
           <div class="val ${result.valid ? 'green' : 'red'}">${result.valid ? 'true' : 'false'}</div>
         </div>
         <div class="result-field">
           <label>Formateado</label>
-          <div class="val" style="color:var(--white)">${escHtml(result.formatted)}</div>
+          <div class="val">${escHtml(result.formatted)}</div>
         </div>
       </div>
     `
@@ -1021,11 +686,11 @@
   // ── init ──────────────────────────────────────────────────
   try {
     populateTables()
-    overlay.classList.add('hidden')
+    overlay.classList.add('opacity-0', 'pointer-events-none')
     setTimeout(() => overlay.remove(), 400)
   } catch (err) {
-    overlay.classList.add('hidden')
-    errorBanner.classList.add('visible')
+    overlay.classList.add('opacity-0', 'pointer-events-none')
+    errorBanner.classList.remove('hidden')
     document.getElementById('errorDetail').textContent = String(err)
     console.error('[palta demo]', err)
   }
