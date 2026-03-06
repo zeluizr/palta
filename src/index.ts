@@ -1,0 +1,6 @@
+export * as br from './br/index.js'
+export * as cl from './cl/index.js'
+export * as ar from './ar/index.js'
+export * as co from './co/index.js'
+export * as pe from './pe/index.js'
+export { detect } from './detect.js'

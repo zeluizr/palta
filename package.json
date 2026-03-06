@@ -1,0 +1,66 @@
+{
+  "name": "palta",
+  "version": "1.0.0",
+  "description": "Formatação e validação de dados da América Latina — CPF, RUT, CUIT, moedas, telefones, CEPs e mais. Zero dependencies.",
+  "keywords": ["brasil", "chile", "argentina", "colombia", "peru", "cpf", "cnpj", "rut", "cuit", "nit", "ruc", "format", "validate", "latam", "currency", "phone", "zipcode"],
+  "author": "zeluizr",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeluizr/palta.git"
+  },
+  "homepage": "https://github.com/zeluizr/palta#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./br": {
+      "types": "./dist/br/index.d.ts",
+      "import": "./dist/br/index.js",
+      "require": "./dist/br/index.cjs"
+    },
+    "./cl": {
+      "types": "./dist/cl/index.d.ts",
+      "import": "./dist/cl/index.js",
+      "require": "./dist/cl/index.cjs"
+    },
+    "./ar": {
+      "types": "./dist/ar/index.d.ts",
+      "import": "./dist/ar/index.js",
+      "require": "./dist/ar/index.cjs"
+    },
+    "./co": {
+      "types": "./dist/co/index.d.ts",
+      "import": "./dist/co/index.js",
+      "require": "./dist/co/index.cjs"
+    },
+    "./pe": {
+      "types": "./dist/pe/index.d.ts",
+      "import": "./dist/pe/index.js",
+      "require": "./dist/pe/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^2.0.0",
+    "@vitest/coverage-v8": "^2.0.0"
+  }
+}
