@@ -11,6 +11,14 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, currencies, phone numbers and zip codes. Zero de
 
 ---
 
+<sub>USED IN PRODUCTION BY</sub><br>
+[![integram.me](https://img.shields.io/badge/integram.me-→-222222?style=flat-square&labelColor=222222&color=333333)](https://integram.me)
+
+<sub>SPONSORS</sub><br>
+[![inmmerce](https://img.shields.io/badge/inmmerce-→-222222?style=flat-square&labelColor=222222&color=333333)](https://inmmerce.com) [![commente.me](https://img.shields.io/badge/commente.me-→-222222?style=flat-square&labelColor=222222&color=333333)](https://commente.me)
+
+---
+
 ## Supported countries
 
 | Country | Documents | Currency | Phone | Zip code |

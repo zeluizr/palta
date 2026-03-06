@@ -11,6 +11,14 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, moedas, telefones e CEPs. Zero dependências, tr
 
 ---
 
+<sub>USADO EM PRODUÇÃO POR</sub><br>
+[![integram.me](https://img.shields.io/badge/integram.me-→-222222?style=flat-square&labelColor=222222&color=333333)](https://integram.me)
+
+<sub>PATROCINADORES</sub><br>
+[![inmmerce](https://img.shields.io/badge/inmmerce-→-222222?style=flat-square&labelColor=222222&color=333333)](https://inmmerce.com) [![commente.me](https://img.shields.io/badge/commente.me-→-222222?style=flat-square&labelColor=222222&color=333333)](https://commente.me)
+
+---
+
 ## Países suportados
 
 | País | Documentos | Moeda | Telefone | CEP |
