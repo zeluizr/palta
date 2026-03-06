@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
 [![license](https://img.shields.io/npm/l/@zeluizr/palta)](./LICENSE)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@zeluizr/palta)](https://bundlephobia.com/package/@zeluizr/palta)
+[![website](https://img.shields.io/badge/website-palta.zeluizr.com-blue)](https://palta.zeluizr.com/)
 
 **Formatting and validation for Latin American data.**
 
@@ -84,7 +85,7 @@ import { br } from '@zeluizr/palta'
 import br from '@zeluizr/palta/br'
 
 // Single module
-import * as cpf from '@zeluizr/palta/br'
+import * as br from '@zeluizr/palta/br'
 ```
 
 ---
