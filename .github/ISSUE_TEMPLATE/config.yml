@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Preguntas y discusiones
+    url: https://github.com/zeluizr/palta/discussions
+    about: Para preguntas generales usa las discusiones
+  - name: 📦 npmjs.com
+    url: https://www.npmjs.com/package/@zeluizr/palta
+    about: Ver el paquete en npm
+  - name: 🌐 Documentación
+    url: https://palta.zeluizr.com
+    about: Sitio oficial del proyecto
