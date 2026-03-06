@@ -424,11 +424,11 @@
         <span class="chip" data-value="11144477735">CPF BR</span>
         <span class="chip" data-value="11222333000181">CNPJ BR</span>
         <span class="chip" data-value="12345678K">RUT CL</span>
-        <span class="chip" data-value="20123456780">CUIT AR</span>
+        <span class="chip" data-value="20123456786">CUIT AR</span>
         <span class="chip" data-value="12345678">DNI AR/PE</span>
-        <span class="chip" data-value="9004444444">NIT CO</span>
+        <span class="chip" data-value="9004444447">NIT CO</span>
         <span class="chip" data-value="1234567890">CC CO</span>
-        <span class="chip" data-value="20100070971">RUC PE</span>
+        <span class="chip" data-value="20100070970">RUC PE</span>
       </div>
       <div class="mt-5 min-h-[100px]" id="detectResult">
         <div class="font-mono text-[13px] text-[#6e7681] py-5">Escribe un valor para ver el resultado de detect()...</div>
@@ -543,10 +543,10 @@
 
     // AR — CUIT
     fill('table-ar-cuit', [
-      ['ar.cuit.format("20123456780")',   '20123456780',  ar.cuit.format('20123456780')],
-      ['ar.cuit.format("27123456784")',   '27123456784',  ar.cuit.format('27123456784')],
-      ['ar.cuit.validate("20123456780")', '20123456780',  ar.cuit.validate('20123456780')],
-      ['ar.cuit.validate("27123456784")', '27123456784',  ar.cuit.validate('27123456784')],
+      ['ar.cuit.format("20123456786")',   '20123456786',  ar.cuit.format('20123456786')],
+      ['ar.cuit.format("27123456780")',   '27123456780',  ar.cuit.format('27123456780')],
+      ['ar.cuit.validate("20123456786")', '20123456786',  ar.cuit.validate('20123456786')],
+      ['ar.cuit.validate("27123456780")', '27123456780',  ar.cuit.validate('27123456780')],
       ['ar.cuit.validate("00000000000")', '00000000000',  ar.cuit.validate('00000000000')],
     ])
 
@@ -561,9 +561,9 @@
 
     // CO
     fill('table-co', [
-      ['co.nit.format("9004444444")',                    '9004444444',   co.nit.format('9004444444')],
-      ['co.nit.format("9004444444-5")',                  '9004444444-5', co.nit.format('9004444444-5')],
-      ['co.nit.validate("9004444444")',                  '9004444444',   co.nit.validate('9004444444')],
+      ['co.nit.format("9004444447")',                    '9004444447',   co.nit.format('9004444447')],
+      ['co.nit.format("900.444.444-7")',                 '900.444.444-7', co.nit.format('900.444.444-7')],
+      ['co.nit.validate("9004444447")',                  '9004444447',   co.nit.validate('9004444447')],
       ['co.cc.format("1234567890")',                     '1234567890',   co.cc.format('1234567890')],
       ['co.cc.format("98765432")',                       '98765432',     co.cc.format('98765432')],
       ['co.currency.format(4500000)',                    4500000,        co.currency.format(4500000)],

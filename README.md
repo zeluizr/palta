@@ -34,6 +34,15 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. Cero de
 
 ---
 
+## Demo
+
+Prueba todos los módulos en vivo:
+
+- 🌐 [palta.zeluizr.com/demo](https://palta.zeluizr.com/demo) — demo interactiva
+- 📄 [demo/index.html](./demo/index.html) — demo standalone (abrir en el browser)
+
+---
+
 ## Instalación
 
 ```bash
@@ -243,7 +252,7 @@ npm run test:coverage
 npm run build
 
 # Verificar tipos
-npm run typecheck
+npm run lint
 ```
 
 ### Estructura del proyecto

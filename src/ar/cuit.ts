@@ -24,6 +24,7 @@ export function validate(value: string): boolean {
   let sum = 0
   for (let i = 0; i < 10; i++) sum += parseInt(d[i]) * weights[i]
   const rem = 11 - (sum % 11)
-  const check = rem === 11 ? 0 : rem === 10 ? 9 : rem
+  if (rem === 10) return false
+  const check = rem === 11 ? 0 : rem
   return check === parseInt(d[10])
 }

@@ -1,4 +1,4 @@
-import { onlyDigitsAndK } from './utils.js'
+import { onlyDigitsAndK, safeStr } from './utils.js'
 import { validate as validateCpf, format as formatCpf } from './br/cpf.js'
 import { validate as validateCnpj, format as formatCnpj } from './br/cnpj.js'
 import { validate as validateRut, format as formatRut } from './cl/rut.js'
@@ -11,7 +11,7 @@ import { validate as validatePeDni, format as formatPeDni } from './pe/dni.js'
 import type { DetectResult } from './types.js'
 
 export function detect(value: string): DetectResult | null {
-  const raw = onlyDigitsAndK(value)
+  const raw = onlyDigitsAndK(safeStr(value))
   if (!raw) return null
 
   if (raw.includes('K')) {
@@ -32,14 +32,9 @@ export function detect(value: string): DetectResult | null {
     return { country: 'PE', type: 'dni', valid: false, formatted: formatPeDni(raw) }
   }
 
-  if (len === 9) {
-    const withCheck = raw
-    if (validateNit(withCheck)) return { country: 'CO', type: 'nit', valid: true, formatted: formatNit(withCheck) }
-  }
-
   if (len === 10) {
-    if (validateCc(raw)) return { country: 'CO', type: 'cc', valid: true, formatted: formatCc(raw) }
     if (validateNit(raw)) return { country: 'CO', type: 'nit', valid: true, formatted: formatNit(raw) }
+    if (validateCc(raw)) return { country: 'CO', type: 'cc', valid: true, formatted: formatCc(raw) }
     return { country: 'CO', type: 'cc', valid: false, formatted: formatCc(raw) }
   }
 

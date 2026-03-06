@@ -7,7 +7,7 @@ describe('ar/dni', () => {
       expect(dni.format('12345678')).toBe('12.345.678')
     })
     it('formata DNI de 7 dígitos', () => {
-      expect(dni.format('1234567')).toBe('12.345.67')
+      expect(dni.format('1234567')).toBe('1.234.567')
     })
     it('formata parcialmente', () => {
       expect(dni.format('12')).toBe('12')

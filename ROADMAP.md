@@ -774,4 +774,4 @@ Creado por [zeluizr](https://github.com/zeluizr) en asociación con [commente.me
 
 ---
 
-[CONTRIBUTING.md](./CONTRIBUTING.md) · [README.md](./README.md) · [npm](https://www.npmjs.com/package/@zeluizr/palta) · [palta.zeluizr.com](https://palta.zeluizr.com)
+[Português](./ROADMAP.pt.md) · [English](./ROADMAP.en.md) · [CONTRIBUTING.md](./CONTRIBUTING.md) · [README.md](./README.md) · [npm](https://www.npmjs.com/package/@zeluizr/palta) · [palta.zeluizr.com](https://palta.zeluizr.com)

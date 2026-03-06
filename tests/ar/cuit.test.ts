@@ -39,6 +39,9 @@ describe('ar/cuit', () => {
     it('rejeita CUIT com dígito verificador errado', () => {
       expect(cuit.validate('20-12345678-3')).toBe(false)
     })
+    it('rejeita CUIT com remainder 10 (inexistente na AFIP)', () => {
+      expect(cuit.validate('20999999999')).toBe(false)
+    })
     it('lida com null/undefined', () => {
       expect(cuit.validate(null as unknown as string)).toBe(false)
       expect(cuit.validate(undefined as unknown as string)).toBe(false)

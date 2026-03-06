@@ -20,6 +20,15 @@ describe('co/nit', () => {
   })
 
   describe('validate', () => {
+    it('valida NIT válido', () => {
+      expect(nit.validate('8000000002')).toBe(true)
+      expect(nit.validate('9004444447')).toBe(true)
+      expect(nit.validate('800.000.000-2')).toBe(true)
+    })
+    it('rejeita NIT com dígito verificador errado', () => {
+      expect(nit.validate('8000000001')).toBe(false)
+      expect(nit.validate('9004444444')).toBe(false)
+    })
     it('rejeita NIT com comprimento inválido', () => {
       expect(nit.validate('123')).toBe(false)
       expect(nit.validate('')).toBe(false)
