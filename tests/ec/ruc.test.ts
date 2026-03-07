@@ -36,9 +36,9 @@ describe('ec/ruc', () => {
       expect(ruc.validate('1790085783002')).toBe(false)
     })
     it('validates entidad pública (d[2]=6)', () => {
-      // 1760001550001: d[2]=6, public-entity weights=[3,2,7,6,5,4,3,2] on digits 0-7
+      // 1760001550001: d[2]=6, WEIGHTS_PUBLIC=[3,2,7,6,5,4,3,2] on digits 0-7
       // sum = 1*3+7*2+6*7+0*6+0*5+0*4+1*3+5*2 = 3+14+42+0+0+0+3+10 = 72
-      // rem = 72%11 = 6, check = 11-6 = 5, d[8]=5 ✓, suffix '0001'
+      // rem = 72%11 = 6, expected = 11-6 = 5, d[8]=5, suffix d.slice(9)='0001' ✓
       expect(ruc.validate('1760001550001')).toBe(true)
     })
     it('rejects entidad pública with wrong check digit', () => {
@@ -58,6 +58,9 @@ describe('ec/ruc', () => {
   describe('format', () => {
     it('returns digits as-is', () => {
       expect(ruc.format('1790085783001')).toBe('1790085783001')
+    })
+    it('caps output to 13 digits', () => {
+      expect(ruc.format('17900857830010')).toBe('1790085783001')
     })
   })
 

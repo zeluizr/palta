@@ -15,15 +15,21 @@ export function format(
   const intFormatted = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   const sign = amount < 0 ? '-' : ''
   let value = intFormatted
-  if (useDecimals > 0 && decimal !== undefined) {
+  if (useDecimals > 0 && typeof decimal === 'string') {
     value += `.${decimal}`
   }
-  const result = includeSymbol ? `${symbol}${value}` : value
-  return `${sign}${result}`
+  if (includeSymbol) {
+    value = `${symbol}${value}`
+  }
+  return `${sign}${value}`
+}
+
+function strip(value: string): string {
+  return safeStr(value).replace(/[$,]/g, '')
 }
 
 export function parse(value: string): number {
-  const s = safeStr(value).replace(/\$/g, '').replace(/,/g, '').trim()
-  const n = parseFloat(s)
+  const stripped = strip(value)
+  const n = parseFloat(stripped)
   return isNaN(n) ? 0 : n
 }

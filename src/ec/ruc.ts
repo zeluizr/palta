@@ -48,6 +48,5 @@ export function validate(value: string): boolean {
 }
 
 export function format(value: string): string {
-  const d = strip(safeStr(value))
-  return d.slice(0, 13)
+  return strip(safeStr(value)).slice(0, 13)
 }

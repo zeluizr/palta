@@ -49,10 +49,10 @@ describe('ec/phone', () => {
     it('formats from +593 prefix', () => {
       expect(phone.format('+593991234567')).toBe('+593 99 123 4567')
     })
-    it('formats mobile without country code when international=false', () => {
+    it('formats mobile without country code when international: false', () => {
       expect(phone.format('991234567', { international: false })).toBe('99 123 4567')
     })
-    it('formats landline without country code when international=false', () => {
+    it('formats landline without country code when international: false', () => {
       expect(phone.format('22123456', { international: false })).toBe('2 212 3456')
     })
   })
