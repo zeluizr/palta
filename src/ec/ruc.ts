@@ -1,7 +1,7 @@
 import { onlyDigits, safeStr } from '../utils.js'
 import { validate as validateCi } from './ci.js'
 
-export const mask = 'XXXXXXXXXXXXX'
+export const mask = '#############'
 
 const WEIGHTS_PRIVATE = [4, 3, 2, 7, 6, 5, 4, 3, 2]
 const WEIGHTS_PUBLIC = [3, 2, 7, 6, 5, 4, 3, 2]
@@ -48,5 +48,6 @@ export function validate(value: string): boolean {
 }
 
 export function format(value: string): string {
-  return strip(safeStr(value))
+  const d = strip(safeStr(value))
+  return d.slice(0, 13)
 }

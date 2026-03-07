@@ -38,7 +38,7 @@ describe('ec/zipcode', () => {
 
   describe('mask', () => {
     it('returns correct mask', () => {
-      expect(zipcode.mask).toBe('XXXXXX')
+      expect(zipcode.mask).toBe('######')
     })
   })
 })
