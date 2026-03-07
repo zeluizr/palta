@@ -42,7 +42,7 @@ describe('uy/rut', () => {
 
   describe('mask', () => {
     it('retorna a máscara correta', () => {
-      expect(rut.mask).toBe('XXXXXXXXXXX-X')
+      expect(rut.mask).toBe('###########-#')
     })
   })
 })

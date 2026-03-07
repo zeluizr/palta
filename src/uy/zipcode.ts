@@ -1,6 +1,6 @@
 import { onlyDigits, padLeft, safeStr } from '../utils.js'
 
-export const mask = 'XXXXX'
+export const mask = '#####'
 
 export function strip(value: string): string {
   return onlyDigits(safeStr(value))

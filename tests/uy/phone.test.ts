@@ -24,6 +24,9 @@ describe('uy/phone', () => {
     it('formata número com 8 dígitos', () => {
       expect(phone.format('98123456')).toBe('+598 98 123 456')
     })
+    it('formata sem prefixo internacional quando international=false', () => {
+      expect(phone.format('98123456', { international: false })).toBe('98 123 456')
+    })
     it('retorna original se não tiver 8 dígitos', () => {
       expect(phone.format('invalid')).toBe('invalid')
     })
@@ -50,7 +53,7 @@ describe('uy/phone', () => {
       expect(phone.countryCode).toBe('+598')
     })
     it('mask está correto', () => {
-      expect(phone.mask).toBe('+598 XX XXX XXX')
+      expect(phone.mask).toBe('+598 ## ### ###')
     })
   })
 })
