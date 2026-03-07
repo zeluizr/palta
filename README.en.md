@@ -31,8 +31,6 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, currencies, phone numbers and zip codes. Zero de
 | 🇦🇷 Argentina | CUIT/CUIL, DNI | ARS ($) | +54 | CPA or 4 digits |
 | 🇨🇴 Colombia | NIT, CC | COP ($) | +57 | 6 digits |
 | 🇵🇪 Peru | RUC, DNI | PEN (S/) | +51 | 5 digits |
-| 🇲🇽 Mexico | RFC, CURP | MXN ($) | +52 | 5 digits |
-| 🇻🇪 Venezuela | RIF, CI | VES (Bs.) | +58 | 4 digits |
 | 🇺🇾 Uruguay | CI, RUT | UYU ($) | +598 | 5 digits |
 
 ---
