@@ -1,6 +1,6 @@
 import { safeStr } from '../utils.js'
 
-export const mask = 'X-XXXXXXXX-X'
+export const mask = 'X-########-#'
 
 const PREFIX_CODES: Record<string, number> = { J: 0, V: 1, E: 2, G: 3, P: 4 }
 const WEIGHTS = [4, 3, 2, 7, 6, 5, 4, 3, 2]

@@ -1,7 +1,7 @@
 import { onlyDigits, safeStr } from '../utils.js'
 
 export const countryCode = '+58'
-export const mask = { landline: '+58 XXX XXXXXXX', mobile: '+58 4XX XXX XXXX' }
+export const mask = { landline: '+58 ### #######', mobile: '+58 4## ### ####' }
 
 function stripPhone(value: string): string {
   let d = onlyDigits(safeStr(value))
@@ -20,16 +20,21 @@ export function validate(value: string): boolean {
   return d[0] === '2' || d[0] === '4'
 }
 
-export function format(value: string): string {
+export function format(value: string, options?: { international?: boolean }): string {
   const d = stripPhone(safeStr(value))
   if (d.length !== 10) return value
+  const intl = options?.international !== false
   if (d[0] === '2') {
-    // Landline: +58 XXX XXXXXXX
-    return `+58 ${d.slice(0, 3)} ${d.slice(3)}`
+    // Landline
+    return intl
+      ? `+58 ${d.slice(0, 3)} ${d.slice(3)}`
+      : `0${d.slice(0, 3)} ${d.slice(3)}`
   }
   if (d[0] === '4') {
-    // Mobile: +58 4XX XXX XXXX
-    return `+58 ${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`
+    // Mobile
+    return intl
+      ? `+58 ${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`
+      : `0${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`
   }
   return value
 }
