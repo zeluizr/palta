@@ -56,7 +56,7 @@ describe('ve/ci', () => {
 
   describe('mask', () => {
     it('retorna a máscara correta', () => {
-      expect(ci.mask).toBe('X-XX.XXX.XXX')
+      expect(ci.mask).toBe('X-##.###.###')
     })
   })
 })
