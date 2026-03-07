@@ -44,7 +44,7 @@ describe('uy/ci', () => {
 
   describe('mask', () => {
     it('retorna a máscara correta', () => {
-      expect(ci.mask).toBe('X.XXX.XXX-X')
+      expect(ci.mask).toBe('#.###.###-#')
     })
   })
 })

@@ -1,7 +1,7 @@
 import { onlyDigits, safeStr } from '../utils.js'
 
 export const countryCode = '+598'
-export const mask = '+598 XX XXX XXX'
+export const mask = '+598 ## ### ###'
 
 function stripPhone(value: string): string {
   let d = onlyDigits(safeStr(value))
@@ -19,10 +19,14 @@ export function validate(value: string): boolean {
   return d.length === 8
 }
 
-export function format(value: string): string {
+export function format(value: string, options?: { international?: boolean }): string {
   const d = stripPhone(value)
   if (d.length === 8) {
-    return `+598 ${d.slice(0, 2)} ${d.slice(2, 5)} ${d.slice(5)}`
+    const intl = options?.international !== false
+    if (intl) {
+      return `+598 ${d.slice(0, 2)} ${d.slice(2, 5)} ${d.slice(5)}`
+    }
+    return `${d.slice(0, 2)} ${d.slice(2, 5)} ${d.slice(5)}`
   }
   return value
 }

@@ -42,7 +42,7 @@ describe('uy/zipcode', () => {
 
   describe('mask', () => {
     it('retorna a máscara correta', () => {
-      expect(zipcode.mask).toBe('XXXXX')
+      expect(zipcode.mask).toBe('#####')
     })
   })
 })
