@@ -23,16 +23,16 @@ export function validate(value: string): boolean {
 export function format(value: string, options?: { international?: boolean }): string {
   const d = stripPhone(safeStr(value))
   if (d.length !== 10) return value
-  const international = options?.international !== false
+  const intl = options?.international !== false
   if (d[0] === '2') {
     // Landline
-    return international
+    return intl
       ? `+58 ${d.slice(0, 3)} ${d.slice(3)}`
       : `0${d.slice(0, 3)} ${d.slice(3)}`
   }
   if (d[0] === '4') {
     // Mobile
-    return international
+    return intl
       ? `+58 ${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`
       : `0${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}`
   }

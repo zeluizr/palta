@@ -41,6 +41,12 @@ describe('ve/phone', () => {
     it('formata celular sem formato internacional', () => {
       expect(phone.format('4121234567', { international: false })).toBe('0412 123 4567')
     })
+    it('formata telefone fixo local (international: false)', () => {
+      expect(phone.format('2121234567', { international: false })).toBe('0212 1234567')
+    })
+    it('formata celular local (international: false)', () => {
+      expect(phone.format('4121234567', { international: false })).toBe('0412 123 4567')
+    })
   })
 
   describe('strip', () => {
