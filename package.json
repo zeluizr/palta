@@ -75,6 +75,11 @@
       "types": "./dist/pe/index.d.ts",
       "import": "./dist/pe/index.js",
       "require": "./dist/pe/index.cjs"
+    },
+    "./ve": {
+      "types": "./dist/ve/index.d.ts",
+      "import": "./dist/ve/index.js",
+      "require": "./dist/ve/index.cjs"
     }
   },
   "files": [
