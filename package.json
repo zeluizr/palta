@@ -75,6 +75,21 @@
       "types": "./dist/pe/index.d.ts",
       "import": "./dist/pe/index.js",
       "require": "./dist/pe/index.cjs"
+    },
+    "./mx": {
+      "types": "./dist/mx/index.d.ts",
+      "import": "./dist/mx/index.js",
+      "require": "./dist/mx/index.cjs"
+    },
+    "./ve": {
+      "types": "./dist/ve/index.d.ts",
+      "import": "./dist/ve/index.js",
+      "require": "./dist/ve/index.cjs"
+    },
+    "./uy": {
+      "types": "./dist/uy/index.d.ts",
+      "import": "./dist/uy/index.js",
+      "require": "./dist/uy/index.cjs"
     }
   },
   "files": [

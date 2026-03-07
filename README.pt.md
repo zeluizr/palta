@@ -31,6 +31,9 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, moedas, telefones e CEPs. Zero dependências, tr
 | 🇦🇷 Argentina | CUIT/CUIL, DNI | ARS ($) | +54 | CPA ou 4 dígitos |
 | 🇨🇴 Colômbia | NIT, CC | COP ($) | +57 | 6 dígitos |
 | 🇵🇪 Peru | RUC, DNI | PEN (S/) | +51 | 5 dígitos |
+| 🇲🇽 México | RFC, CURP | MXN ($) | +52 | 5 dígitos |
+| 🇻🇪 Venezuela | RIF, CI | VES (Bs.) | +58 | 4 dígitos |
+| 🇺🇾 Uruguai | CI, RUT | UYU ($) | +598 | 5 dígitos |
 
 ---
 
