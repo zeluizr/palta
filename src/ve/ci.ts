@@ -37,16 +37,10 @@ export function format(value: string): string {
   const part1 = digits.slice(0, split)
   const part2 = digits.slice(split, split + 3)
   const part3 = digits.slice(split + 3, split + 6)
-  const rest = digits.slice(split + 6)
 
-  let formatted: string
-  if (part1.length > 0) {
-    formatted = rest.length > 0
-      ? `${part1}.${part2}.${part3}.${rest}`
-      : `${part1}.${part2}.${part3}`
-  } else {
-    formatted = `${part2}.${part3}`
-  }
+  const formatted = part1.length > 0
+    ? `${part1}.${part2}.${part3}`
+    : `${part2}.${part3}`
 
   return `${prefix}-${formatted}`
 }
