@@ -80,6 +80,31 @@
       "types": "./dist/uy/index.d.ts",
       "import": "./dist/uy/index.js",
       "require": "./dist/uy/index.cjs"
+    },
+    "./bo": {
+      "types": "./dist/bo/index.d.ts",
+      "import": "./dist/bo/index.js",
+      "require": "./dist/bo/index.cjs"
+    },
+    "./py": {
+      "types": "./dist/py/index.d.ts",
+      "import": "./dist/py/index.js",
+      "require": "./dist/py/index.cjs"
+    },
+    "./do": {
+      "types": "./dist/do/index.d.ts",
+      "import": "./dist/do/index.js",
+      "require": "./dist/do/index.cjs"
+    },
+    "./pa": {
+      "types": "./dist/pa/index.d.ts",
+      "import": "./dist/pa/index.js",
+      "require": "./dist/pa/index.cjs"
+    },
+    "./cr": {
+      "types": "./dist/cr/index.d.ts",
+      "import": "./dist/cr/index.js",
+      "require": "./dist/cr/index.cjs"
     }
   },
   "files": [
