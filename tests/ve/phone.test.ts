@@ -35,6 +35,12 @@ describe('ve/phone', () => {
     it('formata com prefixo 0', () => {
       expect(phone.format('02121234567')).toBe('+58 212 1234567')
     })
+    it('formata telefone fixo sem formato internacional', () => {
+      expect(phone.format('2121234567', { international: false })).toBe('0212 1234567')
+    })
+    it('formata celular sem formato internacional', () => {
+      expect(phone.format('4121234567', { international: false })).toBe('0412 123 4567')
+    })
   })
 
   describe('strip', () => {
@@ -55,8 +61,8 @@ describe('ve/phone', () => {
 
   describe('mask', () => {
     it('retorna as máscaras corretas', () => {
-      expect(phone.mask.landline).toBe('+58 XXX XXXXXXX')
-      expect(phone.mask.mobile).toBe('+58 4XX XXX XXXX')
+      expect(phone.mask.landline).toBe('+58 ### #######')
+      expect(phone.mask.mobile).toBe('+58 4## ### ####')
     })
   })
 

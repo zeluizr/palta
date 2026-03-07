@@ -67,7 +67,7 @@ describe('ve/rif', () => {
 
   describe('mask', () => {
     it('retorna a máscara correta', () => {
-      expect(rif.mask).toBe('X-XXXXXXXX-X')
+      expect(rif.mask).toBe('X-########-#')
     })
   })
 })

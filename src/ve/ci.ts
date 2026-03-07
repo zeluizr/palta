@@ -1,13 +1,13 @@
 import { safeStr } from '../utils.js'
 
-export const mask = 'X-XX.XXX.XXX'
+export const mask = 'X-##.###.###'
 
 export function strip(value: string): string {
   const s = safeStr(value).toUpperCase()
   // Extract prefix letter (V or E) and then digits
   const match = s.match(/^([VE])[^0-9]*([0-9]+)$/)
   if (match) return match[1] + match[2].replace(/\D/g, '')
-  // Try without prefix prefix — if it starts with V or E followed by digits after removing separators
+  // Try without prefix — if it starts with V or E followed by digits after removing separators
   const stripped = s.replace(/[.\-\s]/g, '')
   return stripped
 }
