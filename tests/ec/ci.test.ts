@@ -45,11 +45,14 @@ describe('ec/ci', () => {
     it('returns the digits as-is', () => {
       expect(ci.format('1713175071')).toBe('1713175071')
     })
+    it('caps output to 10 digits', () => {
+      expect(ci.format('17131750710')).toBe('1713175071')
+    })
   })
 
   describe('mask', () => {
     it('returns correct mask', () => {
-      expect(ci.mask).toBe('XXXXXXXXXX')
+      expect(ci.mask).toBe('##########')
     })
   })
 })

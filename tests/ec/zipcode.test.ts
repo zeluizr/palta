@@ -34,11 +34,14 @@ describe('ec/zipcode', () => {
     it('pads with leading zeros', () => {
       expect(zipcode.format('17015')).toBe('017015')
     })
+    it('trims to 6 digits when longer', () => {
+      expect(zipcode.format('1701500')).toBe('170150')
+    })
   })
 
   describe('mask', () => {
     it('returns correct mask', () => {
-      expect(zipcode.mask).toBe('XXXXXX')
+      expect(zipcode.mask).toBe('######')
     })
   })
 })

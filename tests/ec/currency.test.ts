@@ -15,12 +15,25 @@ describe('ec/currency', () => {
     it('formats negative amount', () => {
       expect(currency.format(-1234.56)).toBe('-$1,234.56')
     })
+    it('formats without symbol when symbol: false', () => {
+      expect(currency.format(1234.56, { symbol: false })).toBe('1,234.56')
+    })
+    it('formats with custom decimals', () => {
+      expect(currency.format(1234.5, { decimals: 0 })).toBe('$1,235')
+      expect(currency.format(1234.5, { decimals: 3 })).toBe('$1,234.500')
+    })
   })
 
-  describe('strip', () => {
-    it('removes dollar sign and commas', () => {
-      expect(currency.strip('$1,234.56')).toBe('1234.56')
-      expect(currency.strip('$1,000,000.00')).toBe('1000000.00')
+  describe('parse', () => {
+    it('removes dollar sign and commas and returns number', () => {
+      expect(currency.parse('$1,234.56')).toBe(1234.56)
+      expect(currency.parse('$1,000,000.00')).toBe(1000000)
+    })
+    it('handles plain number strings', () => {
+      expect(currency.parse('1234.56')).toBe(1234.56)
+    })
+    it('returns 0 for invalid input', () => {
+      expect(currency.parse('')).toBe(0)
     })
   })
 

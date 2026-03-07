@@ -1,6 +1,6 @@
 import { onlyDigits, safeStr } from '../utils.js'
 
-export const mask = 'XXXXXXXXXX'
+export const mask = '##########'
 
 const VALID_PROVINCES = new Set([
   '01','02','03','04','05','06','07','08','09','10',
@@ -37,5 +37,5 @@ export function validate(value: string): boolean {
 }
 
 export function format(value: string): string {
-  return strip(safeStr(value))
+  return strip(safeStr(value)).slice(0, 10)
 }
