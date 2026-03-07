@@ -49,7 +49,7 @@ describe('ec/ci', () => {
 
   describe('mask', () => {
     it('returns correct mask', () => {
-      expect(ci.mask).toBe('XXXXXXXXXX')
+      expect(ci.mask).toBe('##########')
     })
   })
 })
