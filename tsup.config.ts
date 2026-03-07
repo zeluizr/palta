@@ -8,7 +8,7 @@ export default defineConfig({
     'src/ar/index.ts',
     'src/co/index.ts',
     'src/pe/index.ts',
-    'src/ve/index.ts',
+    'src/ec/index.ts',
   ],
   format: ['esm', 'cjs'],
   dts: true,

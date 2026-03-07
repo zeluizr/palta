@@ -76,10 +76,10 @@
       "import": "./dist/pe/index.js",
       "require": "./dist/pe/index.cjs"
     },
-    "./ve": {
-      "types": "./dist/ve/index.d.ts",
-      "import": "./dist/ve/index.js",
-      "require": "./dist/ve/index.cjs"
+    "./ec": {
+      "types": "./dist/ec/index.d.ts",
+      "import": "./dist/ec/index.js",
+      "require": "./dist/ec/index.cjs"
     }
   },
   "files": [
