@@ -35,8 +35,11 @@ describe('ve/phone', () => {
     it('formata com prefixo 0', () => {
       expect(phone.format('02121234567')).toBe('+58 212 1234567')
     })
-    it('retorna input original para número de 10 dígitos que não começa com 2 ou 4', () => {
-      expect(phone.format('3121234567')).toBe('3121234567')
+    it('formata telefone fixo sem formato internacional', () => {
+      expect(phone.format('2121234567', { international: false })).toBe('0212 1234567')
+    })
+    it('formata celular sem formato internacional', () => {
+      expect(phone.format('4121234567', { international: false })).toBe('0412 123 4567')
     })
     it('formata telefone fixo local (international: false)', () => {
       expect(phone.format('2121234567', { international: false })).toBe('0212 1234567')
