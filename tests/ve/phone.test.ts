@@ -35,6 +35,9 @@ describe('ve/phone', () => {
     it('formata com prefixo 0', () => {
       expect(phone.format('02121234567')).toBe('+58 212 1234567')
     })
+    it('retorna input original para número de 10 dígitos que não começa com 2 ou 4', () => {
+      expect(phone.format('3121234567')).toBe('3121234567')
+    })
   })
 
   describe('strip', () => {
