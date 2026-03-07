@@ -1,0 +1,5 @@
+export * as rfc from './rfc.js'
+export * as curp from './curp.js'
+export * as currency from './currency.js'
+export * as phone from './phone.js'
+export * as zipcode from './zipcode.js'

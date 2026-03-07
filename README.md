@@ -31,6 +31,7 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. Cero de
 | 🇦🇷 Argentina | CUIT/CUIL, DNI | ARS ($) | +54 | CPA o 4 dígitos |
 | 🇨🇴 Colombia | NIT, CC | COP ($) | +57 | 6 dígitos |
 | 🇵🇪 Perú | RUC, DNI | PEN (S/) | +51 | 5 dígitos |
+| 🇲🇽 México | RFC, CURP | MXN ($) | +52 | 5 dígitos |
 
 ---
 
