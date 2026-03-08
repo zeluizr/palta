@@ -105,6 +105,51 @@
       "types": "./dist/cr/index.d.ts",
       "import": "./dist/cr/index.js",
       "require": "./dist/cr/index.cjs"
+    },
+    "./gt": {
+      "types": "./dist/gt/index.d.ts",
+      "import": "./dist/gt/index.js",
+      "require": "./dist/gt/index.cjs"
+    },
+    "./hn": {
+      "types": "./dist/hn/index.d.ts",
+      "import": "./dist/hn/index.js",
+      "require": "./dist/hn/index.cjs"
+    },
+    "./sv": {
+      "types": "./dist/sv/index.d.ts",
+      "import": "./dist/sv/index.js",
+      "require": "./dist/sv/index.cjs"
+    },
+    "./ni": {
+      "types": "./dist/ni/index.d.ts",
+      "import": "./dist/ni/index.js",
+      "require": "./dist/ni/index.cjs"
+    },
+    "./cu": {
+      "types": "./dist/cu/index.d.ts",
+      "import": "./dist/cu/index.js",
+      "require": "./dist/cu/index.cjs"
+    },
+    "./pr": {
+      "types": "./dist/pr/index.d.ts",
+      "import": "./dist/pr/index.js",
+      "require": "./dist/pr/index.cjs"
+    },
+    "./ht": {
+      "types": "./dist/ht/index.d.ts",
+      "import": "./dist/ht/index.js",
+      "require": "./dist/ht/index.cjs"
+    },
+    "./jm": {
+      "types": "./dist/jm/index.d.ts",
+      "import": "./dist/jm/index.js",
+      "require": "./dist/jm/index.cjs"
+    },
+    "./tt": {
+      "types": "./dist/tt/index.d.ts",
+      "import": "./dist/tt/index.js",
+      "require": "./dist/tt/index.cjs"
     }
   },
   "files": [
