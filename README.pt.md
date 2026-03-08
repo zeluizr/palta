@@ -1,12 +1,11 @@
 # 🥑 palta
 
-[![npm](https://img.shields.io/npm/v/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
-[![license](https://img.shields.io/npm/l/@zeluizr/palta)](./LICENSE)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/@zeluizr/palta)](https://bundlephobia.com/package/@zeluizr/palta)
-[![website](https://img.shields.io/badge/website-palta.zeluizr.com-blue)](https://palta.zeluizr.com/)
-[![GitHub Stars](https://img.shields.io/github/stars/zeluizr/palta?style=flat)](https://github.com/zeluizr/palta/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/zeluizr/palta?style=flat)](https://github.com/zeluizr/palta/network/members)
-[![Open Source](https://img.shields.io/badge/open_source-%E2%9D%A4-brightgreen)](https://github.com/zeluizr/palta)
+[![npm](https://badgen.net/npm/v/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
+[![license](https://badgen.net/npm/license/@zeluizr/palta)](./LICENSE)
+[![website](https://badgen.net/badge/website/palta.zeluizr.com/blue)](https://palta.zeluizr.com/)
+[![GitHub Stars](https://badgen.net/github/stars/zeluizr/palta)](https://github.com/zeluizr/palta/stargazers)
+[![GitHub Forks](https://badgen.net/github/forks/zeluizr/palta)](https://github.com/zeluizr/palta/network/members)
+[![Open Source](https://badgen.net/badge/open%20source/%E2%9D%A4/green)](https://github.com/zeluizr/palta)
 
 **Formatação e validação de dados da América Latina.**
 
@@ -24,14 +23,30 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, moedas, telefones e CEPs. Zero dependências, tr
 
 ## Países suportados
 
-| País | Documentos | Moeda | Telefone | CEP |
-|------|-----------|-------|----------|-----|
-| 🇧🇷 Brasil | CPF, CNPJ | BRL (R$) | +55 | 8 dígitos |
-| 🇨🇱 Chile | RUT | CLP ($) | +56 | 7 dígitos |
-| 🇦🇷 Argentina | CUIT/CUIL, DNI | ARS ($) | +54 | CPA ou 4 dígitos |
-| 🇨🇴 Colômbia | NIT, CC | COP ($) | +57 | 6 dígitos |
-| 🇵🇪 Peru | RUC, DNI | PEN (S/) | +51 | 5 dígitos |
-| 🇺🇾 Uruguai | CI, RUT | UYU ($) | +598 | 5 dígitos |
+**20 países disponíveis** · 1.232 testes · cobertura ≥ 94%
+
+| País | Módulo | Documentos | Moeda | Telefone |
+|------|--------|-----------|-------|----------|
+| 🇧🇷 Brasil | `br` | CPF, CNPJ | BRL (R$) | +55 |
+| 🇨🇱 Chile | `cl` | RUT | CLP ($) | +56 |
+| 🇦🇷 Argentina | `ar` | CUIT/CUIL, DNI | ARS ($) | +54 |
+| 🇨🇴 Colômbia | `co` | NIT, CC | COP ($) | +57 |
+| 🇵🇪 Peru | `pe` | RUC, DNI | PEN (S/) | +51 |
+| 🇺🇾 Uruguai | `uy` | CI, RUT | UYU ($) | +598 |
+| 🇧🇴 Bolívia | `bo` | NIT, CI | BOB (Bs) | +591 |
+| 🇵🇾 Paraguai | `py` | RUC, CI | PYG (₲) | +595 |
+| 🇩🇴 Rep. Dominicana | `do` | Cédula, RNC | DOP (RD$) | +1-809 |
+| 🇨🇷 Costa Rica | `cr` | Cédula, Jurídica, DIMEX | CRC (₡) | +506 |
+| 🇵🇦 Panamá | `pa` | RUC, Cédula | PAB (B/.) | +507 |
+| 🇬🇹 Guatemala | `gt` | NIT, DPI | GTQ (Q) | +502 |
+| 🇭🇳 Honduras | `hn` | RTN, DNI | HNL (L) | +504 |
+| 🇸🇻 El Salvador | `sv` | NIT, DUI | USD ($) | +503 |
+| 🇳🇮 Nicarágua | `ni` | Cédula, RUC | NIO (C$) | +505 |
+| 🇨🇺 Cuba | `cu` | Carnet, REEUP | CUP ($) | +53 |
+| 🇵🇷 Porto Rico | `pr` | EIN, SSN | USD ($) | +1-787 |
+| 🇭🇹 Haiti | `ht` | NIF, CIN | HTG (G) | +509 |
+| 🇯🇲 Jamaica | `jm` | TRN, NIN | JMD (J$) | +1-876 |
+| 🇹🇹 Trinidad e Tobago | `tt` | TIN, NIS | TTD (TT$) | +1-868 |
 
 ---
 
@@ -265,7 +280,7 @@ detect('xyz')
 
 ## Roadmap
 
-Quer adicionar um novo país? Veja o roadmap completo com os 18 países pendentes, organizados por prioridade:
+20 dos 23 países planejados da América Latina já estão disponíveis. Veja o roadmap com os países restantes:
 
 📍 [Ver ROADMAP.pt.md](./ROADMAP.pt.md) · [Español](./ROADMAP.md) · [English](./ROADMAP.en.md)
 
