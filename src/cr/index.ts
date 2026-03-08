@@ -1,0 +1,6 @@
+export * as cedula from './cedula.js'
+export * as juridica from './juridica.js'
+export * as dimex from './dimex.js'
+export * as currency from './currency.js'
+export * as phone from './phone.js'
+export * as zipcode from './zipcode.js'
