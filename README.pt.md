@@ -23,7 +23,7 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, moedas, telefones e CEPs. Zero dependências, tr
 
 ## Países suportados
 
-**20 países disponíveis** · 1.232 testes · cobertura ≥ 94%
+**23 países disponíveis** · 1.232 testes · cobertura ≥ 94%
 
 | País | Módulo | Documentos | Moeda | Telefone |
 |------|--------|-----------|-------|----------|
@@ -47,6 +47,9 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, moedas, telefones e CEPs. Zero dependências, tr
 | 🇭🇹 Haiti | `ht` | NIF, CIN | HTG (G) | +509 |
 | 🇯🇲 Jamaica | `jm` | TRN, NIN | JMD (J$) | +1-876 |
 | 🇹🇹 Trinidad e Tobago | `tt` | TIN, NIS | TTD (TT$) | +1-868 |
+| 🇲🇽 México | `mx` | RFC, CURP | MXN ($) | +52 |
+| 🇻🇪 Venezuela | `ve` | RIF, CI | VES (Bs.) | +58 |
+| 🇪🇨 Equador | `ec` | RUC, CI | USD ($) | +593 |
 
 ---
 
@@ -280,7 +283,7 @@ detect('xyz')
 
 ## Roadmap
 
-20 dos 23 países planejados da América Latina já estão disponíveis. Veja o roadmap com os países restantes:
+Todos os países da América Latina já estão disponíveis. O projeto está completo — agora aceitamos melhorias e correções nos módulos existentes:
 
 📍 [Ver ROADMAP.pt.md](./ROADMAP.pt.md) · [Español](./ROADMAP.md) · [English](./ROADMAP.en.md)
 

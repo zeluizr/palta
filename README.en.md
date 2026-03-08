@@ -23,7 +23,7 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, currencies, phone numbers and zip codes. Zero de
 
 ## Supported countries
 
-**20 countries available** · 1,232 tests · coverage ≥ 94%
+**23 countries available** · 1,232 tests · coverage ≥ 94%
 
 | Country | Module | Documents | Currency | Phone |
 |---------|--------|-----------|----------|-------|
@@ -47,6 +47,9 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, currencies, phone numbers and zip codes. Zero de
 | 🇭🇹 Haiti | `ht` | NIF, CIN | HTG (G) | +509 |
 | 🇯🇲 Jamaica | `jm` | TRN, NIN | JMD (J$) | +1-876 |
 | 🇹🇹 Trinidad & Tobago | `tt` | TIN, NIS | TTD (TT$) | +1-868 |
+| 🇲🇽 Mexico | `mx` | RFC, CURP | MXN ($) | +52 |
+| 🇻🇪 Venezuela | `ve` | RIF, CI | VES (Bs.) | +58 |
+| 🇪🇨 Ecuador | `ec` | RUC, CI | USD ($) | +593 |
 
 ---
 
@@ -280,7 +283,7 @@ detect('xyz')
 
 ## Roadmap
 
-20 of 23 planned Latin American countries are already available. Check the roadmap for the remaining ones:
+All Latin American countries are now available. The project is complete — we now accept improvements and fixes on existing modules:
 
 📍 [View ROADMAP.en.md](./ROADMAP.en.md) · [Español](./ROADMAP.md) · [Português](./ROADMAP.pt.md)
 
