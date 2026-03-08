@@ -1,0 +1,16 @@
+import { onlyDigits, safeStr } from '../utils.js'
+
+export const mask = '####'
+
+export function strip(value: string): string {
+  return onlyDigits(safeStr(value))
+}
+
+export function validate(value: string): boolean {
+  return strip(safeStr(value)).length === 4
+}
+
+export function format(value: string): string {
+  const d = strip(value).padStart(4, '0').slice(0, 4)
+  return d
+}
