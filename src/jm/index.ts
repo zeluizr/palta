@@ -1,0 +1,5 @@
+export * as trn from './trn.js'
+export * as nin from './nin.js'
+export * as currency from './currency.js'
+export * as phone from './phone.js'
+export * as zipcode from './zipcode.js'
