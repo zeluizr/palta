@@ -1,6 +1,6 @@
 {
   "name": "@zeluizr/palta",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Formateo y validación de datos de América Latina — CPF, RUT, CUIT, monedas, teléfonos, códigos postales y más. Zero dependencies.",
   "keywords": [
     "brasil",
@@ -172,7 +172,7 @@
   ],
   "sideEffects": false,
   "engines": {
-    "node": ">=18"
+    "node": ">=16"
   },
   "scripts": {
     "build": "tsup",
