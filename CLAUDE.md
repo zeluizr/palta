@@ -70,12 +70,18 @@ Both are in `src/utils.ts`.
 ## Important notes
 
 - Countries using USD (El Salvador, Panama, Puerto Rico, Ecuador): their `currency` module formats in local USD style
-- `detect()` in `src/detect.ts` handles only the core documents (CPF, CNPJ, CUIT, RUT, CC, NIT, RUC, DNI); it is not exhaustive across all 20 countries
+- `detect()` in `src/detect.ts` handles only the core documents (CPF, CNPJ, CUIT, RUT, CC, NIT, RUC, DNI); it is not exhaustive across all 23 countries
 - When `rem === 10` in CUIT validation, return `false` — no valid CUIT produces that remainder
 - Test files import directly from `src/` (not from the built package), so they work even before `build`
 
 ## CI/CD
 
-- `.github/workflows/ci.yml` — runs `test:coverage` on every push/PR
-- `.github/workflows/publish.yml` — publishes to npm and GitHub Packages on `v*` tags
+- `.github/workflows/ci.yml` — runs lint + `test:coverage` + build on every push/PR, using Node 18
+- No automated publish — releases are published manually via `npm publish --access public`
 - Coverage threshold: 94% (lines, statements, functions, branches) enforced in `vitest.config.ts`
+
+### Node version notes
+
+- **CI runs on Node 18** — vitest 2.x requires Node ≥ 18 (`crypto.getRandomValues` unavailable in Node 16)
+- **Library supports Node ≥ 16** — declared in `engines` in `package.json`; the compiled output has zero runtime dependencies and uses no Node 18-exclusive APIs
+- This distinction matters for VTEX IO: the package installs and runs on Node 16, even though the dev toolchain requires Node 18

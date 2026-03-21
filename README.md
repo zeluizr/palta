@@ -275,7 +275,12 @@ npm run build
 
 # Verificar tipos
 npm run lint
+
+# Publicar en npm (manual)
+npm publish --access public
 ```
+
+> **Nota:** el tooling de desarrollo (vitest 2.x) requiere Node ≥ 18. La librería compilada es compatible con Node ≥ 16.
 
 ### Estructura del proyecto
 

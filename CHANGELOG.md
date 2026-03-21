@@ -14,7 +14,9 @@ All notable changes to `@zeluizr/palta` are documented here.
 
 ### Changed
 
-- Node.js engine requirement lowered to `>=16` (was `>=18`)
+- Node.js engine requirement lowered to `>=16` — compatible with VTEX IO
+- CI simplified to a single Node 18 job (vitest 2.x requires Node ≥ 18; the compiled library still runs on Node 16)
+- Automated npm publish removed from CI — releases are now published manually
 
 ### Stats
 
