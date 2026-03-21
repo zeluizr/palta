@@ -98,4 +98,4 @@ Este proyecto está completo en términos de cobertura regional. A partir de aho
 
 ---
 
-[Português](./ROADMAP.pt.md) · [English](./ROADMAP.en.md) · [CONTRIBUTING.md](.github/CONTRIBUTING.md) · [README.md](./README.md) · [npm](https://www.npmjs.com/package/@zeluizr/palta)
+[CONTRIBUTING.md](.github/CONTRIBUTING.md) · [README.md](./README.md) · [npm](https://www.npmjs.com/package/@zeluizr/palta)

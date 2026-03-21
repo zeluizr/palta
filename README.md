@@ -314,7 +314,7 @@ tests/
 
 Todos los países de América Latina ya están disponibles. El proyecto está completo — ahora aceptamos mejoras y correcciones sobre los módulos existentes:
 
-📍 [Ver ROADMAP.md](./ROADMAP.md) · [Português](./ROADMAP.pt.md) · [English](./ROADMAP.en.md)
+📍 [Ver ROADMAP.md](./ROADMAP.md)
 
 ---
 
@@ -368,4 +368,3 @@ Hecho con mucho amor ❤️ y café ☕ por [commente.me](https://commente.me)
 
 ---
 
-[Português](./README.pt.md) · [English](./README.en.md)
