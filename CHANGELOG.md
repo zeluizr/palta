@@ -4,6 +4,24 @@ All notable changes to `@zeluizr/palta` are documented here.
 
 ---
 
+## v1.0.11 — March 2026
+
+### Added
+
+- `mx` (México): RFC (con homoclave), CURP, MXN currency, phone (+52), zipcode — registered in package exports
+- `ve` (Venezuela): RIF, CI, VES currency, phone (+58), zipcode — registered in package exports
+- `ec` (Ecuador): RUC (13 dígitos), CI (módulo 10), USD currency, phone (+593), zipcode — registered in package exports
+
+### Changed
+
+- Node.js engine requirement lowered to `>=16` (was `>=18`)
+
+### Stats
+
+- 116 test files · 1,232 tests · coverage ≥ 94%
+
+---
+
 ## v1.0.10 — March 2026
 
 ### Added

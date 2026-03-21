@@ -1,7 +1,10 @@
 # 🥑 palta
 
 [![npm](https://badgen.net/npm/v/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
+[![downloads](https://badgen.net/npm/dm/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
 [![license](https://badgen.net/npm/license/@zeluizr/palta)](./LICENSE)
+[![node](https://badgen.net/npm/node/@zeluizr/palta)](https://www.npmjs.com/package/@zeluizr/palta)
+[![CI](https://github.com/zeluizr/palta/actions/workflows/ci.yml/badge.svg)](https://github.com/zeluizr/palta/actions/workflows/ci.yml)
 [![website](https://badgen.net/badge/website/palta.zeluizr.com/blue)](https://palta.zeluizr.com/)
 [![GitHub Stars](https://badgen.net/github/stars/zeluizr/palta)](https://github.com/zeluizr/palta/stargazers)
 [![GitHub Forks](https://badgen.net/github/forks/zeluizr/palta)](https://github.com/zeluizr/palta/network/members)
