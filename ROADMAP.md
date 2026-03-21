@@ -1,10 +1,58 @@
 # 🥑 palta — Roadmap
 
-## ¡Misión cumplida!
+## ¡Misión cumplida! — Cobertura regional completa
 
 **Todos los países de América Latina ya están disponibles en `@zeluizr/palta`.**
 
 Si encontrás un bug, querés mejorar la validación de un documento existente, o querés agregar un módulo nuevo a un país que ya está, tu contribución es **muy bienvenida**.
+
+---
+
+## 🔜 Próximamente — Módulo de medidas
+
+> **Estado:** planificado · target: v1.1.0
+
+### `measurements` — Conversión y formateo de unidades para e-commerce
+
+Un módulo global (no por país) para convertir y formatear unidades de medida. Pensado para catálogos de productos, fichas técnicas y plataformas de e-commerce como VTEX IO, Shopify y similares.
+
+#### API propuesta
+
+```ts
+import { measurements } from '@zeluizr/palta'
+
+// Conversión de longitud
+measurements.length.convert(10, 'cm', 'mm')   // 100
+measurements.length.convert(1.5, 'm', 'cm')   // 150
+measurements.length.convert(1, 'ft', 'cm')    // 30.48
+
+// Formateo
+measurements.length.format(1.5, 'm')          // '1,50 m'
+measurements.length.format(100, 'cm')         // '100 cm'
+
+// Conversión de peso
+measurements.weight.convert(1, 'kg', 'g')     // 1000
+measurements.weight.convert(500, 'g', 'kg')   // 0.5
+measurements.weight.format(1.5, 'kg')         // '1,50 kg'
+
+// Conversión de volumen
+measurements.volume.convert(1, 'l', 'ml')     // 1000
+measurements.volume.format(750, 'ml')         // '750 ml'
+```
+
+#### Unidades planificadas
+
+| Tipo | Unidades |
+|------|----------|
+| Longitud | `mm`, `cm`, `m`, `km`, `in`, `ft` |
+| Peso | `mg`, `g`, `kg`, `oz`, `lb` |
+| Volumen | `ml`, `l`, `fl oz` |
+
+#### Motivación
+
+En e-commerce latinoamericano es común trabajar con dimensiones de productos en múltiples unidades (fichas técnicas, reglas de envío, comparadores). Este módulo centraliza esa lógica con la misma filosofía de palta: cero dependencias, funciones puras, TypeScript strict.
+
+---
 
 ---
 

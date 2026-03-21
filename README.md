@@ -312,7 +312,11 @@ tests/
 
 ## Roadmap
 
-Todos los países de América Latina ya están disponibles. El proyecto está completo — ahora aceptamos mejoras y correcciones sobre los módulos existentes:
+Todos los países de América Latina ya están disponibles. El proyecto está completo en cobertura regional.
+
+**Próximamente — v1.1.0:**
+
+- 📐 **Módulo `measurements`** — conversión y formateo de unidades de medida (mm, cm, m, km, g, kg, ml, l) para catálogos de productos y e-commerce
 
 📍 [Ver ROADMAP.md](./ROADMAP.md)
 

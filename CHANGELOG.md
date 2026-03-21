@@ -8,9 +8,11 @@ Todos los cambios notables de `@zeluizr/palta` están documentados aquí.
 
 ### Cambios
 
-- Documentación migrada completamente al español (README, CHANGELOG, CONTRIBUTING)
-- Scripts de publicación agregados: `publish:npm`, `publish:gh`, `publish:all`
-- Soporte explícito para publicación en GitHub Packages
+- Documentación migrada completamente al español — README, CHANGELOG, CONTRIBUTING, ROADMAP
+- Scripts de publicación agregados en `package.json`: `publish:npm`, `publish:gh`, `publish:all`
+- Soporte explícito para publicación en GitHub Packages (`npm.pkg.github.com`)
+- CI configurado en Node 18 (vitest 2.x requiere ≥18; la librería compilada sigue siendo compatible con Node ≥16)
+- Módulo `measurements` anunciado en roadmap — conversión de unidades para e-commerce (target: v1.1.0)
 
 ### Estadísticas
 
