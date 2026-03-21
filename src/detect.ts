@@ -29,7 +29,13 @@ export function detect(value: string): DetectResult | null {
   if (len === 8) {
     if (validatePeDni(raw)) return { country: 'PE', type: 'dni', valid: true, formatted: formatPeDni(raw) }
     if (validateArDni(raw)) return { country: 'AR', type: 'dni', valid: true, formatted: formatArDni(raw) }
+    if (validateRut(raw)) return { country: 'CL', type: 'rut', valid: true, formatted: formatRut(raw) }
     return { country: 'PE', type: 'dni', valid: false, formatted: formatPeDni(raw) }
+  }
+
+  if (len === 9) {
+    if (validateRut(raw)) return { country: 'CL', type: 'rut', valid: true, formatted: formatRut(raw) }
+    return { country: 'CL', type: 'rut', valid: false, formatted: formatRut(raw) }
   }
 
   if (len === 10) {

@@ -35,6 +35,23 @@ describe('detect', () => {
     expect(result?.valid).toBe(true)
   })
 
+  it('detecta RUT chileno com dígito numérico (9 dígitos)', () => {
+    const result = detect('261343541')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('CL')
+    expect(result?.type).toBe('rut')
+    expect(result?.valid).toBe(true)
+    expect(result?.formatted).toBe('26.134.354-1')
+  })
+
+  it('detecta RUT chileno inválido de 9 dígitos com valid=false', () => {
+    const result = detect('261343549')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('CL')
+    expect(result?.type).toBe('rut')
+    expect(result?.valid).toBe(false)
+  })
+
   it('detecta CUIT argentino válido', () => {
     const result = detect('20-12345678-6')
     expect(result).not.toBeNull()
