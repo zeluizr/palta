@@ -4,6 +4,20 @@ Todos los cambios notables de `@zeluizr/palta` están documentados aquí.
 
 ---
 
+## v1.0.12 — Marzo 2026
+
+### Cambios
+
+- Documentación migrada completamente al español (README, CHANGELOG, CONTRIBUTING)
+- Scripts de publicación agregados: `publish:npm`, `publish:gh`, `publish:all`
+- Soporte explícito para publicación en GitHub Packages
+
+### Estadísticas
+
+- 116 archivos de test · 1.232 tests · cobertura ≥ 94%
+
+---
+
 ## v1.0.11 — Marzo 2026
 
 ### Agregado
