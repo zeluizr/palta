@@ -4,6 +4,24 @@ Todos los cambios notables de `@zeluizr/palta` están documentados aquí.
 
 ---
 
+## v1.2.0 — Marzo 2026
+
+### Agregado
+
+- `detect()` expandido para MX, UY, VE y EC con detección en dos fases (patrones alfanuméricos primero, luego longitud numérica)
+  - **MX**: CURP (18 caracteres) y RFC (12-13 caracteres)
+  - **UY**: CI (8 dígitos, priorizado antes de DNI PE/AR)
+  - **VE**: RIF (10 caracteres, prefijo J/V/E/G/P)
+  - **EC**: RUC (13 dígitos)
+- `DetectResult.country` y `.type` ampliados de uniones literales a `string` para soportar los nuevos países
+- Entry points `tsup` para `mx`, `ve`, `ec`
+
+### Estadísticas
+
+- 119 archivos de test · 1.293 tests · cobertura ≥ 94%
+
+---
+
 ## v1.1.0 — Marzo 2026
 
 ### Agregado
