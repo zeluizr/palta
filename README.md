@@ -283,13 +283,15 @@ detect('xyz')
 // null
 ```
 
-| Longitud | Candidatos |
-|----------|-----------|
+| Candidatos | Documento |
+|------------|-----------|
 | Contiene K | RUT (Chile) |
-| 8 dígitos | DNI Perú, DNI Argentina |
-| 10 dígitos | CC Colombia, NIT Colombia |
+| 8 dígitos | DNI (PE/AR), CI (UY), RUT (CL) |
+| 10 caracteres | RIF (VE), CC/NIT (CO) |
 | 11 dígitos | CPF (BR), CUIT (AR), RUC (PE) |
+| 12-13 caracteres | RFC (MX), RUC (EC) |
 | 14 dígitos | CNPJ (BR) |
+| 18 caracteres | CURP (MX) |
 
 ---
 

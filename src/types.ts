@@ -35,8 +35,8 @@ export interface MeasurementModule<U extends string> {
 }
 
 export interface DetectResult {
-  country: 'BR' | 'CL' | 'AR' | 'CO' | 'PE'
-  type: 'cpf' | 'cnpj' | 'rut' | 'cuit' | 'dni' | 'nit' | 'cc' | 'ruc'
+  country: string
+  type: string
   valid: boolean
   formatted: string
 }
