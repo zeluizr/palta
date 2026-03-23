@@ -4,6 +4,20 @@ Todos los cambios notables de `@zeluizr/palta` están documentados aquí.
 
 ---
 
+## v1.0.13 — Marzo 2026
+
+### Corregido
+
+- `detect()` ahora reconoce RUT chileno con dígito verificador numérico (0–9) — antes retornaba `null` para inputs de 9 dígitos sin `K`
+- `detect('261343541')` ahora retorna `{ country: 'CL', type: 'rut', valid: true, formatted: '26.134.354-1' }`
+- En el caso de 8 dígitos (body de 7 dígitos), `detect()` prioriza DNI peruano (`validatePeDni` siempre retorna `true` para 8 dígitos), por lo que RUT no se evalúa en este caso
+
+### Estadísticas
+
+- 116 archivos de test · 1.234 tests · cobertura ≥ 94%
+
+---
+
 ## v1.0.12 — Marzo 2026
 
 ### Cambios
