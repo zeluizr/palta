@@ -23,6 +23,7 @@ export default defineConfig({
     'src/ht/index.ts',
     'src/jm/index.ts',
     'src/tt/index.ts',
+    'src/measurements/index.ts',
   ],
   format: ['esm', 'cjs'],
   dts: true,

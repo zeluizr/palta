@@ -25,6 +25,15 @@ export interface ZipcodeModule {
   mask: string
 }
 
+export type LengthUnit = 'mm' | 'cm' | 'm' | 'km' | 'in' | 'ft'
+export type WeightUnit = 'mg' | 'g' | 'kg' | 'oz' | 'lb'
+export type VolumeUnit = 'ml' | 'l' | 'fl oz'
+
+export interface MeasurementModule<U extends string> {
+  convert(value: number, from: U, to: U): number
+  format(value: number, unit: U, options?: { decimals?: number }): string
+}
+
 export interface DetectResult {
   country: 'BR' | 'CL' | 'AR' | 'CO' | 'PE'
   type: 'cpf' | 'cnpj' | 'rut' | 'cuit' | 'dni' | 'nit' | 'cc' | 'ruc'

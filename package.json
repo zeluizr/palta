@@ -165,6 +165,11 @@
       "types": "./dist/tt/index.d.ts",
       "import": "./dist/tt/index.js",
       "require": "./dist/tt/index.cjs"
+    },
+    "./measurements": {
+      "types": "./dist/measurements/index.d.ts",
+      "import": "./dist/measurements/index.js",
+      "require": "./dist/measurements/index.cjs"
     }
   },
   "files": [
