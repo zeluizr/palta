@@ -12,7 +12,7 @@
 
 **Formateo y validación de datos de América Latina.**
 
-CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. Cero dependencias, tree-shakeable, funciona en el browser y en Node.js.
+CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos, códigos postales y unidades de medida. Cero dependencias, tree-shakeable, funciona en el browser y en Node.js.
 
 ---
 
@@ -26,7 +26,7 @@ CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. Cero de
 
 ## Países soportados
 
-**23 países disponibles** · 1.232 tests · cobertura ≥ 94%
+**23 países disponibles** · módulo `measurements` · 1.288 tests · cobertura ≥ 94%
 
 | País | Módulo | Documentos | Moneda | Teléfono |
 |------|--------|-----------|--------|----------|
@@ -229,6 +229,43 @@ mask: string
 
 ---
 
+### measurements
+
+Conversión y formateo de unidades de medida. Diseñado para e-commerce (VTEX IO, Shopify), donde las dimensiones llegan siempre en `cm` y el peso en `g`.
+
+```ts
+import { measurements } from '@zeluizr/palta'
+// o
+import { length, weight, volume } from '@zeluizr/palta/measurements'
+
+// Longitud — auto-escala cm ≥ 100 → m
+measurements.length.convert(10, 'cm', 'mm')  // 100
+measurements.length.convert(1, 'ft', 'cm')   // 30.48
+measurements.length.format(50, 'cm')          // '50 cm'
+measurements.length.format(150, 'cm')         // '1,50 m'
+
+// Peso — auto-escala g ≥ 1000 → kg
+measurements.weight.convert(1, 'kg', 'g')    // 1000
+measurements.weight.format(500, 'g')          // '500 g'
+measurements.weight.format(1500, 'g')         // '1,50 kg'
+
+// Volumen — auto-escala ml ≥ 1000 → l
+measurements.volume.convert(1, 'l', 'ml')    // 1000
+measurements.volume.format(750, 'ml')         // '750 ml'
+measurements.volume.format(1500, 'ml')        // '1,50 l'
+
+// options.decimals para controlar precisión
+measurements.weight.format(1500, 'g', { decimals: 3 })  // '1,500 kg'
+```
+
+| Módulo | Unidades |
+|--------|----------|
+| `measurements.length` | `mm`, `cm`, `m`, `km`, `in`, `ft` |
+| `measurements.weight` | `mg`, `g`, `kg`, `oz`, `lb` |
+| `measurements.volume` | `ml`, `l`, `fl oz` |
+
+---
+
 ### detect()
 
 Auto-detecta el país y tipo de un documento:
@@ -290,6 +327,8 @@ src/
 ├── uy/  bo/  py/  do/        # Prioridad media
 ├── cr/  pa/  gt/  hn/  sv/   # Prioridad media / comunidad
 ├── ni/  cu/  pr/  ht/  jm/  tt/  # Comunidad
+├── mx/  ve/  ec/             # Norte y Caribe continental
+├── measurements/             # Módulo global de unidades (v1.1.0)
 ├── detect.ts     # Auto-detección de país y tipo
 ├── types.ts      # Interfaces compartidas
 └── index.ts      # Barrel export
@@ -314,9 +353,7 @@ tests/
 
 Todos los países de América Latina ya están disponibles. El proyecto está completo en cobertura regional.
 
-**Próximamente — v1.1.0:**
-
-- 📐 **Módulo `measurements`** — conversión y formateo de unidades de medida (mm, cm, m, km, g, kg, ml, l) para catálogos de productos y e-commerce
+Todos los países de América Latina disponibles + módulo `measurements` para e-commerce.
 
 📍 [Ver ROADMAP.md](./ROADMAP.md)
 

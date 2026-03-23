@@ -4,6 +4,23 @@ Todos los cambios notables de `@zeluizr/palta` están documentados aquí.
 
 ---
 
+## v1.1.0 — Marzo 2026
+
+### Agregado
+
+- Módulo global `measurements` — conversión y formateo de unidades de medida para e-commerce (VTEX IO, Shopify)
+  - `measurements.length` — longitud: `mm`, `cm`, `m`, `km`, `in`, `ft` — auto-escala `cm ≥ 100 → m`
+  - `measurements.weight` — peso: `mg`, `g`, `kg`, `oz`, `lb` — auto-escala `g ≥ 1000 → kg`
+  - `measurements.volume` — volumen: `ml`, `l`, `fl oz` — auto-escala `ml ≥ 1000 → l`
+- Tipos exportados: `LengthUnit`, `WeightUnit`, `VolumeUnit`, `MeasurementModule<U>` en `src/types.ts`
+- Subpath import: `@zeluizr/palta/measurements`
+
+### Estadísticas
+
+- 119 archivos de test · 1.288 tests · cobertura ≥ 94%
+
+---
+
 ## v1.0.13 — Marzo 2026
 
 ### Corregido

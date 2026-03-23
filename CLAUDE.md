@@ -4,7 +4,7 @@ Guide for AI assistants working on this codebase.
 
 ## Project
 
-`@zeluizr/palta` — TypeScript library for formatting and validating Latin American data (tax IDs, currencies, phones, zip codes). Zero runtime dependencies.
+`@zeluizr/palta` — TypeScript library for formatting and validating Latin American data (tax IDs, currencies, phones, zip codes, measurements). Zero runtime dependencies.
 
 - npm: `@zeluizr/palta`
 - Repo: https://github.com/zeluizr/palta
@@ -31,6 +31,11 @@ src/
     currency.ts   # implements CurrencyModule (format, parse, symbol, code)
     phone.ts      # implements PhoneModule (format, validate, mask, countryCode)
     zipcode.ts    # implements ZipcodeModule (format, validate, mask)
+  measurements/
+    index.ts      # re-exports length, weight, volume
+    length.ts     # implements MeasurementModule<LengthUnit> — auto-scales cm≥100 → m
+    weight.ts     # implements MeasurementModule<WeightUnit> — auto-scales g≥1000 → kg
+    volume.ts     # implements MeasurementModule<VolumeUnit> — auto-scales ml≥1000 → l
 ```
 
 Shared interfaces are in `src/types.ts`. Do not invent new contracts.
@@ -73,6 +78,7 @@ Both are in `src/utils.ts`.
 - `detect()` in `src/detect.ts` handles only the core documents (CPF, CNPJ, CUIT, RUT, CC, NIT, RUC, DNI); it is not exhaustive across all 23 countries
 - When `rem === 10` in CUIT validation, return `false` — no valid CUIT produces that remainder
 - Test files import directly from `src/` (not from the built package), so they work even before `build`
+- **`measurements`** is a global module (not per-country). VTEX IO always sends dimensions in `cm` and weight in `g` — `format()` auto-scales for display. Available via `import { measurements } from '@zeluizr/palta'` or `import { length } from '@zeluizr/palta/measurements'`
 
 ## CI/CD
 
