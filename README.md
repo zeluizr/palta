@@ -26,6 +26,7 @@
     <a href="#-instalación">Instalación</a> ·
     <a href="#-uso">Uso</a> ·
     <a href="#-scripts">Scripts</a> ·
+    <a href="#-changelog">Changelog</a> ·
     <a href="#-licencia">Licencia</a> ·
     <a href="#-autor">Autor</a>
   </p>
@@ -65,6 +66,10 @@ import { /* ... */ } from '@zeluizr/palta'
 | `pnpm publish:npm` | `npm publish --access public` |
 | `pnpm publish:gh` | `npm publish --registry https://npm.pkg.github.com --acc…` |
 | `pnpm publish:all` | `npm run publish:npm && npm run publish:gh` |
+
+## 📝 Changelog
+
+Consulta el historial de cambios en [`CHANGELOG.md`](./CHANGELOG.md).
 
 ## 📄 Licencia
 
