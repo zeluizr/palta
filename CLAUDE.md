@@ -4,7 +4,7 @@ Guide for AI assistants working on this codebase.
 
 ## Project
 
-`@zeluizr/palta` — TypeScript library for formatting and validating Latin American data (tax IDs, currencies, phones, zip codes). Zero runtime dependencies.
+`@zeluizr/palta` — TypeScript library for formatting and validating Latin American data (tax IDs, currencies, phones, zip codes, measurements). Zero runtime dependencies.
 
 - npm: `@zeluizr/palta`
 - Repo: https://github.com/zeluizr/palta
@@ -31,6 +31,11 @@ src/
     currency.ts   # implements CurrencyModule (format, parse, symbol, code)
     phone.ts      # implements PhoneModule (format, validate, mask, countryCode)
     zipcode.ts    # implements ZipcodeModule (format, validate, mask)
+  measurements/
+    index.ts      # re-exports length, weight, volume
+    length.ts     # implements MeasurementModule<LengthUnit> — auto-scales cm≥100 → m
+    weight.ts     # implements MeasurementModule<WeightUnit> — auto-scales g≥1000 → kg
+    volume.ts     # implements MeasurementModule<VolumeUnit> — auto-scales ml≥1000 → l
 ```
 
 Shared interfaces are in `src/types.ts`. Do not invent new contracts.
@@ -70,12 +75,19 @@ Both are in `src/utils.ts`.
 ## Important notes
 
 - Countries using USD (El Salvador, Panama, Puerto Rico, Ecuador): their `currency` module formats in local USD style
-- `detect()` in `src/detect.ts` handles only the core documents (CPF, CNPJ, CUIT, RUT, CC, NIT, RUC, DNI); it is not exhaustive across all 20 countries
+- `detect()` in `src/detect.ts` handles only the core documents (CPF, CNPJ, CUIT, RUT, CC, NIT, RUC, DNI); it is not exhaustive across all 23 countries
 - When `rem === 10` in CUIT validation, return `false` — no valid CUIT produces that remainder
 - Test files import directly from `src/` (not from the built package), so they work even before `build`
+- **`measurements`** is a global module (not per-country). VTEX IO always sends dimensions in `cm` and weight in `g` — `format()` auto-scales for display. Available via `import { measurements } from '@zeluizr/palta'` or `import { length } from '@zeluizr/palta/measurements'`
 
 ## CI/CD
 
-- `.github/workflows/ci.yml` — runs `test:coverage` on every push/PR
-- `.github/workflows/publish.yml` — publishes to npm and GitHub Packages on `v*` tags
+- `.github/workflows/ci.yml` — runs lint + `test:coverage` + build on every push/PR, using Node 18
+- No automated publish — releases are published manually via `npm publish --access public`
 - Coverage threshold: 94% (lines, statements, functions, branches) enforced in `vitest.config.ts`
+
+### Node version notes
+
+- **CI runs on Node 18** — vitest 2.x requires Node ≥ 18 (`crypto.getRandomValues` unavailable in Node 16)
+- **Library supports Node ≥ 16** — declared in `engines` in `package.json`; the compiled output has zero runtime dependencies and uses no Node 18-exclusive APIs
+- This distinction matters for VTEX IO: the package installs and runs on Node 16, even though the dev toolchain requires Node 18

@@ -35,6 +35,23 @@ describe('detect', () => {
     expect(result?.valid).toBe(true)
   })
 
+  it('detecta RUT chileno com dígito numérico (9 dígitos)', () => {
+    const result = detect('261343541')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('CL')
+    expect(result?.type).toBe('rut')
+    expect(result?.valid).toBe(true)
+    expect(result?.formatted).toBe('26.134.354-1')
+  })
+
+  it('detecta RUT chileno inválido de 9 dígitos com valid=false', () => {
+    const result = detect('261343549')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('CL')
+    expect(result?.type).toBe('rut')
+    expect(result?.valid).toBe(false)
+  })
+
   it('detecta CUIT argentino válido', () => {
     const result = detect('20-12345678-6')
     expect(result).not.toBeNull()
@@ -60,5 +77,44 @@ describe('detect', () => {
     const result = detect('52998224726')
     expect(result).not.toBeNull()
     expect(result?.valid).toBe(false)
+  })
+
+  it('detecta RIF venezuelano (10 caracteres, inicia com letra)', () => {
+    const result = detect('J-12345678-5')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('VE')
+    expect(result?.type).toBe('rif')
+    expect(result?.valid).toBe(true)
+  })
+
+  it('detecta CI uruguaia (8 dígitos)', () => {
+    const result = detect('1.234.567-2')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('UY')
+    expect(result?.type).toBe('ci')
+    expect(result?.valid).toBe(true)
+  })
+
+  it('detecta RFC mexicano (12 ou 13 caracteres)', () => {
+    const result = detect('GODE560704RJ1')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('MX')
+    expect(result?.type).toBe('rfc')
+    expect(result?.valid).toBe(true)
+  })
+
+  it('detecta CURP mexicano (18 caracteres)', () => {
+    const result = detect('HEGG560427MVZRRL04')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('MX')
+    expect(result?.type).toBe('curp')
+    expect(result?.valid).toBe(true)
+  })
+
+  it('detecta RUC equatoriano (13 dígitos)', () => {
+    const result = detect('1790010937001')
+    expect(result).not.toBeNull()
+    expect(result?.country).toBe('EC')
+    expect(result?.type).toBe('ruc')
   })
 })

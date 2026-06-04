@@ -1,10 +1,45 @@
 # 🥑 palta — Roadmap
 
-## ¡Misión cumplida!
+## ¡Misión cumplida! — Cobertura regional completa
 
 **Todos los países de América Latina ya están disponibles en `@zeluizr/palta`.**
 
 Si encontrás un bug, querés mejorar la validación de un documento existente, o querés agregar un módulo nuevo a un país que ya está, tu contribución es **muy bienvenida**.
+
+---
+
+## ✅ Disponible desde v1.1.0 — Módulo de medidas
+
+### `measurements` — Conversión y formateo de unidades para e-commerce
+
+Módulo global (no por país) para convertir y formatear unidades de medida. Diseñado para catálogos de productos y plataformas de e-commerce como VTEX IO (que siempre envía dimensiones en `cm` y peso en `g`) y Shopify.
+
+```ts
+import { measurements } from '@zeluizr/palta'
+// o
+import { length, weight, volume } from '@zeluizr/palta/measurements'
+
+// Longitud — auto-escala cm ≥ 100 → m
+measurements.length.convert(10, 'cm', 'mm')  // 100
+measurements.length.format(50, 'cm')          // '50 cm'
+measurements.length.format(150, 'cm')         // '1,50 m'
+
+// Peso — auto-escala g ≥ 1000 → kg
+measurements.weight.convert(1, 'kg', 'g')    // 1000
+measurements.weight.format(500, 'g')          // '500 g'
+measurements.weight.format(1500, 'g')         // '1,50 kg'
+
+// Volumen — auto-escala ml ≥ 1000 → l
+measurements.volume.convert(1, 'l', 'ml')    // 1000
+measurements.volume.format(750, 'ml')         // '750 ml'
+measurements.volume.format(1500, 'ml')        // '1,50 l'
+```
+
+| Módulo | Unidades |
+|--------|----------|
+| `length` | `mm`, `cm`, `m`, `km`, `in`, `ft` |
+| `weight` | `mg`, `g`, `kg`, `oz`, `lb` |
+| `volume` | `ml`, `l`, `fl oz` |
 
 ---
 
@@ -98,4 +133,4 @@ Este proyecto está completo en términos de cobertura regional. A partir de aho
 
 ---
 
-[Português](./ROADMAP.pt.md) · [English](./ROADMAP.en.md) · [CONTRIBUTING.md](.github/CONTRIBUTING.md) · [README.md](./README.md) · [npm](https://www.npmjs.com/package/@zeluizr/palta)
+[CONTRIBUTING.md](.github/CONTRIBUTING.md) · [README.md](./README.md) · [npm](https://www.npmjs.com/package/@zeluizr/palta)
