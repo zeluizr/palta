@@ -63,9 +63,10 @@ import { /* ... */ } from '@zeluizr/palta'
 | `pnpm test:coverage` | `vitest run --coverage` |
 | `pnpm typecheck` | `tsc --noEmit` |
 | `pnpm lint` | `tsc --noEmit` |
-| `pnpm publish:npm` | `npm publish --access public` |
-| `pnpm publish:gh` | `npm publish --registry https://npm.pkg.github.com --acc…` |
-| `pnpm publish:all` | `npm run publish:npm && npm run publish:gh` |
+
+## 📝 Changelog
+
+Consulta el historial de cambios en [`CHANGELOG.md`](./CHANGELOG.md).
 
 ## 📝 Changelog
 
