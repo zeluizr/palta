@@ -8,3 +8,8 @@ PALTA-CLAUDE.md
 PALTA-TEAMMATE-PROMPT.md
 PALTA-REVIEW-PROMPT.md
 open-source-proposals.md
+
+# secrets / local env
+.env
+.env.*
+!.env.example
