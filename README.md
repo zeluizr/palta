@@ -1,90 +1,51 @@
-<div align="center">
+# palta
 
-  <h1>Palta</h1>
+**Formateo y validación de datos de América Latina — CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. Cero dependencias.**
 
-  <p><em>Formateo y validación de datos de América Latina — CPF, RUT, CUIT, monedas, teléfonos, códigos postales y más. Zero dependencies.</em></p>
+[![npm](https://badgen.net/npm/v/@zeluizr/palta?color=7AB317)](https://www.npmjs.com/package/@zeluizr/palta)
+[![node](https://badgen.net/npm/node/@zeluizr/palta?color=7AB317)](https://nodejs.org)
+[![licencia](https://badgen.net/npm/license/@zeluizr/palta?label=licencia&color=7AB317)](./LICENSE)
 
-  <p>
-    <a href="https://github.com/zeluizr/palta/actions"><img alt="CI" src="https://badgen.net/github/checks/zeluizr/palta"></a>
-    <a href="https://www.npmjs.com/package/@zeluizr/palta"><img alt="npm" src="https://badgen.net/npm/v/@zeluizr/palta"></a>
-    <a href="https://www.npmjs.com/package/@zeluizr/palta"><img alt="downloads" src="https://badgen.net/npm/dm/@zeluizr/palta"></a>
-    <a href="./LICENSE"><img alt="license" src="https://badgen.net/github/license/zeluizr/palta"></a>
-    <a href="https://github.com/zeluizr/palta/stargazers"><img alt="stars" src="https://badgen.net/github/stars/zeluizr/palta"></a>
-    <a href="https://github.com/zeluizr/palta/commits"><img alt="last commit" src="https://badgen.net/github/last-commit/zeluizr/palta"></a>
-    <img alt="PRs" src="https://badgen.net/badge/PRs/welcome/green">
-  </p>
-
-  <p>
-    <img alt="TypeScript" src="https://badgen.net/badge/TypeScript/lang/blue">
-    <img alt="Node.js" src="https://badgen.net/badge/Node.js/runtime/green">
-    <img alt="Vitest" src="https://badgen.net/badge/Vitest/tests/green">
-    <img alt="tsup" src="https://badgen.net/badge/tsup/build/orange">
-  </p>
-
-  <p>
-    <a href="#-acerca-de">Acerca de</a> ·
-    <a href="#-instalación">Instalación</a> ·
-    <a href="#-uso">Uso</a> ·
-    <a href="#-scripts">Scripts</a> ·
-    <a href="#-changelog">Changelog</a> ·
-    <a href="#-licencia">Licencia</a> ·
-    <a href="#-autor">Autor</a>
-  </p>
-
-</div>
+Librería TypeScript, sin dependencias en runtime, para 23 países de América Latina: formatea,
+valida, limpia y enmascara documentos; formatea y parsea monedas, teléfonos y códigos
+postales; y convierte medidas.
 
 ---
 
-## 📖 Acerca de
-
-Formateo y validación de datos de América Latina — CPF, RUT, CUIT, monedas, teléfonos, códigos postales y más. Zero dependencies.
-
-Una biblioteca publicada en npm.
-
-## 📦 Instalación
+## Instalación
 
 ```bash
-pnpm add @zeluizr/palta
+npm i @zeluizr/palta
 ```
 
-## 💻 Uso
+## Uso
 
 ```ts
-import { /* ... */ } from '@zeluizr/palta'
+import { br, cl, ar, measurements, detect } from '@zeluizr/palta'
+
+// Documentos — format · validate · strip · mask
+br.cpf.format('11144477735')        // '111.444.777-35'
+br.cpf.validate('111.444.777-35')   // true
+cl.rut.format('123456785')          // '12.345.678-5'
+ar.cuit.validate('20123456786')     // true | false
+
+// Moneda — format · parse
+br.currency.format(1234.5)          // 'R$ 1.234,50'
+br.currency.parse('R$ 1.234,50')    // 1234.5
+
+// Medidas — auto-escala (cm ≥ 100 → m, g ≥ 1000 → kg)
+measurements.length.format(150)     // '1,5 m'
+measurements.weight.format(2500)    // '2,5 kg'
+
+// Detección — identifica país y tipo (cpf, rut, cuit…)
+detect('111.444.777-35')
 ```
 
-## 📜 Scripts
-
-| Comando | Qué hace |
-| --- | --- |
-| `pnpm build` | `tsup` |
-| `pnpm test` | `vitest run` |
-| `pnpm test:watch` | `vitest` |
-| `pnpm test:coverage` | `vitest run --coverage` |
-| `pnpm typecheck` | `tsc --noEmit` |
-| `pnpm lint` | `tsc --noEmit` |
-
-## 📝 Changelog
-
-Consulta el historial de cambios en [`CHANGELOG.md`](./CHANGELOG.md).
-
-## 📝 Changelog
-
-Consulta el historial de cambios en [`CHANGELOG.md`](./CHANGELOG.md).
-
-## 📄 Licencia
-
-Distribuido bajo la licencia MIT. Ver [`LICENSE`](./LICENSE).
-
-## 👤 Autor
-
-**José Luiz Rodrigues**
-
-<a href="https://github.com/zeluizr"><img alt="GitHub" src="https://badgen.net/badge/GitHub/zeluizr/black?icon=github"></a>
-<a href="https://www.npmjs.com/~zeluizr"><img alt="npm" src="https://badgen.net/badge/npm/zeluizr/red?icon=npm"></a>
+Cada país es un namespace (`br`, `cl`, `ar`, `co`, `mx`, `pe`…); también puedes importar solo
+uno: `import { br } from '@zeluizr/palta'`.
 
 ---
 
-<div align="center">
-  <sub>Hecho con ☕ por <a href="https://github.com/zeluizr">@zeluizr</a></sub>
-</div>
+palta es **open source** bajo licencia [MIT](./LICENSE).
+
+_Hecho con amor y café por [zeluizr](https://github.com/zeluizr) y con la ayuda de [Claude](https://claude.ai/referral/Cz_UimA0NQ) ☕_
