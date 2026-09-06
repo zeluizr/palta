@@ -193,9 +193,12 @@
     "publish:all": "npm run publish:npm && npm run publish:gh"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.11",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
-    "vitest": "^2.0.0",
-    "@vitest/coverage-v8": "^2.0.0"
+    "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "esbuild": "^0.28.2"
   }
 }
