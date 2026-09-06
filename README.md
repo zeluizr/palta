@@ -8,7 +8,7 @@ y convierte medidas con auto-escala. Sin dependencias en runtime, ESM y CJS, tip
 
 [![npm](https://badgen.net/npm/v/@zeluizr/palta?color=7AB317)](https://www.npmjs.com/package/@zeluizr/palta)
 [![node](https://badgen.net/npm/node/@zeluizr/palta)](https://nodejs.org)
-[![licencia](https://badgen.net/npm/license/@zeluizr/palta)](./LICENSE)
+[![licencia](https://badgen.net/npm/license/@zeluizr/palta?label=licencia)](./LICENSE)
 
 ---
 
@@ -46,7 +46,9 @@ br.currency.parse('R$ 1.234,50')              // 1234.5
 
 ```ts
 // Teléfonos y códigos postales
-cl.phone.format('912345678')        // '+56 9 1234 5678'
+cl.phone.format('912345678')        // '+56 9 1234 5678'  (internacional por defecto)
+br.phone.format('11987654321')      // '(11) 98765-4321'  (Brasil es la excepción: nacional)
+br.phone.format('11987654321', { international: true })   // '+55 (11) 98765-4321'
 br.zipcode.format('01310100')       // '01310-100'
 ```
 
@@ -90,7 +92,7 @@ contratos están en `src/types.ts` y son idénticos en todos los países.
 |---|---|---|
 | documento | `format` `strip` `validate` `mask` | `mask` es la plantilla, por ejemplo `###.###.###-##` |
 | `currency` | `format` `parse` `symbol` `code` | `format(value, { decimals, symbol })` |
-| `phone` | `format` `validate` `mask` `countryCode` | `format(value, { international })`, por defecto internacional |
+| `phone` | `format` `validate` `mask` `countryCode` | `format(value, { international })` — internacional por defecto en todos los países **menos Brasil**, que devuelve el formato nacional salvo que se pida `{ international: true }` |
 | `zipcode` | `format` `validate` `mask` | |
 
 <details>
