@@ -16,3 +16,6 @@ open-source-proposals.md
 
 # macOS
 .DS_Store
+
+# Registro local de eventos de sesion de los agentes. No es contenido del proyecto.
+.guilda/
