@@ -54,4 +54,25 @@ describe('pr/currency', () => {
       expect(currency.decimals).toBe(2)
     })
   })
+
+  describe('options', () => {
+    it('omits the symbol', () => {
+      expect(currency.format(1234.5, { symbol: false })).toBe('1,234.50')
+    })
+    it('overrides the decimals', () => {
+      expect(currency.format(1234.5, { decimals: 0 })).toBe('$ 1,235')
+    })
+  })
+
+  describe('defensive', () => {
+    it('returns "" instead of throwing', () => {
+      expect(currency.format(null as unknown as number)).toBe('')
+      expect(currency.format(undefined as unknown as number)).toBe('')
+      expect(currency.format(NaN)).toBe('')
+    })
+    it('does not throw on non-string parse input', () => {
+      expect(currency.parse(null as unknown as string)).toBe(0)
+      expect(currency.parse(undefined as unknown as string)).toBe(0)
+    })
+  })
 })

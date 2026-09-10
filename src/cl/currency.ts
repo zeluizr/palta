@@ -4,6 +4,7 @@ export const symbol = '$'
 export const code = 'CLP'
 
 export function format(value: number, options?: { decimals?: number; symbol?: boolean }): string {
+  if (typeof value !== 'number' || !isFinite(value)) return ''
   const decimals = options?.decimals ?? 0
   const showSymbol = options?.symbol !== false
   const negative = value < 0

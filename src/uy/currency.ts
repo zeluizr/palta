@@ -5,6 +5,7 @@ export const code = 'UYU'
 export const decimals = 2
 
 export function format(value: number, options?: { decimals?: number; symbol?: boolean }): string {
+  if (typeof value !== 'number' || !isFinite(value)) return ''
   const dec = options?.decimals ?? decimals
   const showSymbol = options?.symbol !== false
   const negative = value < 0

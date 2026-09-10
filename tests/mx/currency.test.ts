@@ -44,4 +44,39 @@ describe('mx/currency', () => {
       expect(currency.decimals).toBe(2)
     })
   })
+
+  describe('parse', () => {
+    it('returns a number, not a string', () => {
+      expect(currency.parse('$1,234.50')).toBe(1234.5)
+      expect(typeof currency.parse('$1,234.50')).toBe('number')
+    })
+    it('parses negative amounts', () => {
+      expect(currency.parse('$-500.50')).toBe(-500.5)
+    })
+    it('returns 0 for empty or invalid input', () => {
+      expect(currency.parse('')).toBe(0)
+      expect(currency.parse('abc')).toBe(0)
+      expect(currency.parse(null as unknown as string)).toBe(0)
+    })
+    it('keeps strip as an extra', () => {
+      expect(currency.strip('$1,234.50')).toBe('1234.50')
+    })
+  })
+
+  describe('options', () => {
+    it('omits the symbol', () => {
+      expect(currency.format(1234.5, { symbol: false })).toBe('1,234.50')
+    })
+    it('overrides the decimals', () => {
+      expect(currency.format(1234.5, { decimals: 0 })).toBe('$1,235')
+    })
+  })
+
+  describe('defensive', () => {
+    it('returns "" for non-finite values', () => {
+      expect(currency.format(NaN)).toBe('')
+      expect(currency.format(null as unknown as number)).toBe('')
+      expect(currency.format(undefined as unknown as number)).toBe('')
+    })
+  })
 })

@@ -1,7 +1,10 @@
 import { onlyDigits, safeStr } from '../utils.js'
 
 export const mask = '+505 #### ####'
-export const code = '+505'
+export const countryCode = '+505'
+
+/** @deprecated mantido por compatibilidade; use countryCode */
+export const code = countryCode
 
 export function strip(value: string): string {
   return onlyDigits(safeStr(value).replace(/^\+?505/, ''))

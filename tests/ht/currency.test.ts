@@ -51,4 +51,24 @@ describe('ht.currency', () => {
       expect(currency.parse('abc')).toBe(0)
     })
   })
+
+  describe('options', () => {
+    it('should omit the symbol', () => {
+      expect(currency.format(1234.5, { symbol: false })).toBe('1,234.50')
+    })
+    it('should override the decimals', () => {
+      expect(currency.format(1234.5, { decimals: 0 })).toBe('G 1,235')
+    })
+  })
+
+  describe('defensive', () => {
+    it('should return "" for non-finite values', () => {
+      expect(currency.format(NaN)).toBe('')
+      expect(currency.format(null as unknown as number)).toBe('')
+    })
+    it('should not throw on non-string parse input', () => {
+      expect(currency.parse(null as unknown as string)).toBe(0)
+      expect(currency.parse(undefined as unknown as string)).toBe(0)
+    })
+  })
 })

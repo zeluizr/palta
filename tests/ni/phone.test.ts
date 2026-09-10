@@ -59,4 +59,8 @@ describe('ni/phone', () => {
       expect(phone.mask).toBe('+505 #### ####')
     })
   })
+
+    it('countryCode é +505, como manda o contrato', () => {
+      expect(phone.countryCode).toBe('+505')
+    })
 })

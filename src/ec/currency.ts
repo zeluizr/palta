@@ -8,6 +8,7 @@ export function format(
   amount: number,
   options?: { decimals?: number; symbol?: boolean }
 ): string {
+  if (typeof amount !== 'number' || !isFinite(amount)) return ''
   const useDecimals = options?.decimals ?? decimals
   const includeSymbol = options?.symbol !== false
   const formatted = Math.abs(amount).toFixed(useDecimals)
