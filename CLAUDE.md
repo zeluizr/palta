@@ -8,7 +8,7 @@ Guide for AI assistants working on this codebase.
 
 - npm: `@zeluizr/palta`
 - Repo: https://github.com/zeluizr/palta
-- Site: https://palta.zeluizr.com
+- Wiki: https://github.com/zeluizr/palta/wiki
 
 ## Commands
 

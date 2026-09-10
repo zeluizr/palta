@@ -6,6 +6,6 @@ contact_links:
   - name: 📦 npmjs.com
     url: https://www.npmjs.com/package/@zeluizr/palta
     about: Ver el paquete en npm
-  - name: 🌐 Documentación
-    url: https://palta.zeluizr.com
-    about: Sitio oficial del proyecto
+  - name: 📖 Wiki
+    url: https://github.com/zeluizr/palta/wiki
+    about: Guía de uso, referencia de API y cómo contribuir
