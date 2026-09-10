@@ -7,6 +7,8 @@ y este proyecto sigue el [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [No publicado]
 
+## [1.3.0] - 2026-09-10
+
 ### Corregido
 - `mx.currency` implementa `parse(value): number`, como manda `CurrencyModule`. `strip` se
   conserva como extra, así que nada se rompe para quien ya lo usaba
