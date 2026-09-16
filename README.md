@@ -1,3 +1,5 @@
+![palta — Formateo y validación de datos de América Latina: CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. 23 países, TypeScript, cero dependencias, ESM + CJS, Node >=16, MIT.](https://raw.githubusercontent.com/zeluizr/palta/main/assets/banner.png)
+
 # palta
 
 **Formateo y validación de datos de América Latina — CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. Cero dependencias.**

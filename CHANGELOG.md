@@ -7,6 +7,13 @@ y este proyecto sigue el [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [No publicado]
 
+## [1.3.1] - 2026-09-15
+
+### Cambiado
+- El README abre con un banner (`assets/banner.png`). Se referencia por URL absoluta porque
+  npm no resuelve rutas relativas ni renderiza HTML crudo. El archivo no entra en el paquete:
+  `files` sigue siendo `["dist"]`.
+
 ## [1.3.0] - 2026-09-10
 
 ### Corregido
