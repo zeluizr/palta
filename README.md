@@ -1,4 +1,8 @@
-![palta — Formateo y validación de datos de América Latina: CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. 23 países, TypeScript, cero dependencias, ESM + CJS, Node >=16, MIT.](https://raw.githubusercontent.com/zeluizr/palta/main/assets/banner.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/zeluizr/palta/main/.github/assets/readme-header-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/zeluizr/palta/main/assets/banner.png">
+  <img alt="palta — Formateo y validación de datos de América Latina: CPF, CNPJ, RUT, CUIT, NIT, RUC, monedas, teléfonos y códigos postales. 23 países, TypeScript, cero dependencias, ESM + CJS, Node >=16, MIT." src="https://raw.githubusercontent.com/zeluizr/palta/main/assets/banner.png" width="100%">
+</picture>
 
 # palta
 
